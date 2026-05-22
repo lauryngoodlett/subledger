@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Request Detail — RQ-001</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F3F4F6;
+  --surface:#FFFFFF;
+  --surface-2:#F9FAFB;
+  --surface-3:#EEEFF1;
+  --ink:#1A1A1A;
+  --ink-2:#2C2C2C;
+  --ink-3:#5F5E5A;
+  --ink-4:#8A8884;
+  --ink-5:#B8B5AC;
+  --line:#E5E7EB;
+  --line-2:#D1D5DB;
+
+  --brand:#1A2E5A;
+  --brand-2:#1E3668;
+  --brand-soft:#E8EDF6;
+
+  --indigo:#2D2A6E;
+  --indigo-2:#3F3B8F;
+  --indigo-soft:#EDECF7;
+
+  --amber:#8A5A10;
+  --amber-bg:#FBF1DD;
+  --amber-line:#E8C896;
+  --green:#3B6D11;
+  --green-bg:#EAF3DE;
+  --green-line:#A9C580;
+  --red:#9B3030;
+  --red-bg:#F7E5E5;
+  --blue:#0F52A0;
+  --blue-bg:#E3EEF9;
+  --blue-line:#9DC3E6;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);font-family:'Inter',sans-serif;color:var(--ink);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.serif{font-family:'Inter',sans-serif}
+.mono{font-family:'JetBrains Mono',monospace}
+
+/* ============= TOPNAV ============= */
+.topnav{background:var(--surface);border-bottom:1px solid var(--line);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:48px}
+.nav-left{display:flex;align-items:center;gap:12px}
+.nav-logo{display:flex;align-items:center;gap:8px}
+.nav-logo-mark{width:22px;height:22px;border-radius:6px;background:var(--brand);display:flex;align-items:center;justify-content:center}
+.nav-logo-mark svg{width:12px;height:12px;stroke:#fff;stroke-width:2;fill:none}
+.nav-logo-name{font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-0.01em}
+.nav-divider{width:1px;height:18px;background:var(--line-2)}
+.nav-product{font-size:13px;color:var(--ink-3)}
+.nav-right{display:flex;align-items:center;gap:14px}
+.nav-bell{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink-3);background:transparent;border:none;position:relative;transition:background .12s ease}
+.nav-bell:hover{background:var(--surface-3)}
+.nav-bell svg{width:17px;height:17px;stroke-width:1.8}
+.nav-bell-badge{position:absolute;top:5px;right:5px;width:7px;height:7px;border-radius:50%;background:var(--red);border:1.5px solid var(--surface)}
+.nav-user{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--ink-2);cursor:pointer}
+.nav-avatar{width:26px;height:26px;border-radius:50%;background:var(--brand-soft);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:var(--brand)}
+
+/* ============= BREADCRUMB BAR ============= */
+.topbar{background:var(--surface);border-bottom:1px solid var(--line);padding:10px 32px;display:flex;align-items:center;justify-content:space-between}
+.crumbs{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--ink-3)}
+.crumbs a{color:var(--ink-3);text-decoration:none;cursor:pointer}
+.crumbs a:hover{color:var(--ink)}
+.crumbs .sep{color:var(--ink-5)}
+.crumbs .current{color:var(--ink);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500}
+.tb-actions{display:flex;align-items:center;gap:8px}
+.btn{font-family:inherit;font-size:13px;font-weight:500;padding:8px 16px;border-radius:8px;border:1px solid transparent;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all .15s ease;line-height:1}
+.btn svg{width:14px;height:14px}
+.btn-secondary{background:var(--surface);border-color:var(--line-2);color:var(--ink-2)}
+.btn-secondary:hover{background:var(--surface-2);border-color:var(--ink-4)}
+.btn-warn{background:var(--surface);border-color:var(--brand);color:var(--brand)}
+.btn-warn:hover{background:var(--brand-soft)}
+.btn-primary{background:var(--brand);color:#fff;border-color:var(--brand)}
+.btn-primary:hover{background:var(--brand-2)}
+
+/* ============= TITLE BLOCK ============= */
+.titleblock{background:var(--surface);border-bottom:1px solid var(--line);padding:24px 32px 22px}
+.title-metarow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.metatag{font-size:11px;font-weight:500;padding:3px 10px;border-radius:5px;letter-spacing:.02em}
+.metatag-lob{background:var(--brand-soft);color:var(--brand);font-weight:600}
+.metatag-neutral{background:var(--surface-3);color:var(--ink-3);border:1px solid var(--line)}
+.metatag-product{background:var(--surface-3);color:var(--ink-3);border:1px solid var(--line)}
+.metatag-id{background:var(--indigo-soft);color:var(--indigo);font-family:'JetBrains Mono',monospace}
+.metatag-urgent{background:#FCE8E8;color:#9B1B1B;font-weight:600;display:inline-flex;align-items:center;gap:5px}
+.metatag-urgent::before{content:"";width:6px;height:6px;border-radius:50%;background:#9B1B1B}
+.title-h{font-family:'Inter',sans-serif;font-size:30px;font-weight:500;letter-spacing:-0.01em;color:var(--ink);line-height:1.15;margin-bottom:8px}
+.title-submeta{font-size:12px;color:var(--ink-3);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.title-submeta strong{color:var(--ink-2);font-weight:500}
+.title-submeta .dot{color:var(--ink-5)}
+.status-banner{margin-top:14px;background:var(--blue-bg);border:1px solid var(--blue-line);border-radius:10px;padding:14px 18px;display:flex;align-items:center;gap:12px;font-size:13px;color:#0C3A6B}
+.status-banner-icon{flex-shrink:0;width:18px;height:18px;color:var(--blue);margin-top:1px}
+.status-banner strong{font-weight:600;color:#082440;display:block;margin-bottom:2px}
+
+/* ============= SIDEBAR NAV ============= */
+.app-shell{display:flex;min-height:calc(100vh - 48px)}
+.sidenav{width:220px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--line);display:flex;flex-direction:column;padding:8px 0}
+.sidenav-section{padding:16px 14px 4px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-5)}
+.sidenav-item{display:flex;align-items:center;gap:10px;padding:8px 14px;font-size:13px;color:var(--ink-3);cursor:pointer;border-radius:0;text-decoration:none;border:none;background:none;width:100%;text-align:left;font-family:inherit;transition:background .1s ease}
+.sidenav-item:hover{background:var(--surface-2);color:var(--ink-2)}
+.sidenav-item.active{background:var(--brand-soft);color:var(--brand);font-weight:600}
+.sidenav-item svg{width:16px;height:16px;flex-shrink:0;stroke-width:1.8}
+.sidenav-item .nav-badge{margin-left:auto;font-size:10px;font-weight:600;background:var(--surface-3);color:var(--ink-3);padding:1px 7px;border-radius:10px}
+.sidenav-item.active .nav-badge{background:var(--brand);color:#fff}
+.sidenav-spacer{flex:1}
+.sidenav-divider{height:1px;background:var(--line);margin:8px 0}
+.app-content{flex:1;min-width:0}
+
+/* ============= LAYOUT ============= */
+.body{display:grid;grid-template-columns:1fr 320px;gap:24px;padding:24px 32px;align-items:start;max-width:1600px;margin:0 auto}
+.main{display:flex;flex-direction:column;gap:20px}
+
+/* ============= CARDS ============= */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.card-h{padding:16px 22px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}
+.card-h-title{display:flex;align-items:center;gap:10px}
+.card-h-icon{width:18px;height:18px;color:var(--ink-4);stroke-width:1.6}
+.card-h-label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.card-h-meta{font-size:11px;font-weight:500;color:var(--amber);background:var(--amber-bg);padding:3px 9px;border-radius:6px}
+.card-h-meta.ok{color:var(--green);background:var(--green-bg)}
+.card-h-meta.info{color:var(--ink-3);background:var(--surface-3);border:1px solid var(--line)}
+.card-b{padding:20px 22px}
+
+/* ============= REQUEST SUMMARY ============= */
+.summary-text{font-family:'Inter',sans-serif;font-size:15px;line-height:1.65;color:var(--ink-2);margin-bottom:18px;letter-spacing:-0.005em}
+.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line)}
+.summary-field{padding:14px 0;border-bottom:1px solid var(--line)}
+.summary-field:nth-child(odd){padding-right:24px;border-right:1px solid var(--line);padding-left:0}
+.summary-field:nth-child(even){padding-left:24px}
+.summary-field:nth-last-child(-n+2){border-bottom:none}
+.field-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-4);margin-bottom:6px}
+.field-value{font-size:14px;color:var(--ink)}
+.evidence-section{margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}
+.evidence-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-4);margin-bottom:10px}
+.evidence-row{display:flex;align-items:center;gap:12px;padding:11px 14px;background:var(--surface-2);border:1px solid var(--line);border-radius:8px;margin-bottom:6px}
+.evidence-row:last-child{margin-bottom:0}
+.ev-icon{width:14px;height:14px;color:var(--ink-3);flex-shrink:0}
+.ev-name{flex:1;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink);font-weight:500}
+.ev-size{font-size:11px;color:var(--ink-4);font-family:'JetBrains Mono',monospace}
+.ev-dl{font-size:12px;color:var(--blue);background:none;border:none;cursor:pointer;font-family:inherit;font-weight:500;text-decoration:underline;text-underline-offset:3px}
+
+/* ============= CONDITIONS ============= */
+.cond-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--line)}
+.cond-cell{padding:12px 0;border-bottom:1px solid var(--line);background:transparent}
+.cond-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-4);margin-bottom:4px}
+.cond-value{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;color:var(--ink)}
+
+/* ============= CLASSIFICATION ============= */
+.classification{padding:0 0 18px 0;background:transparent;border:none;border-radius:0;margin-bottom:18px;border-bottom:1px solid var(--line)}
+.classification-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.classification-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-4);display:flex;align-items:center;gap:8px}
+.classification-action{font-size:11px;font-weight:500;color:var(--ink-3);background:var(--surface-3);border:1px solid var(--line);padding:3px 9px;border-radius:5px}
+.classification-edit{font-size:12px;color:var(--blue);background:none;border:none;cursor:pointer;font-family:inherit;font-weight:500;text-decoration:underline;text-underline-offset:3px}
+.classification-rule{display:flex;align-items:center;gap:14px;padding:12px 14px;background:var(--surface-2);border-radius:8px;border:none}
+.classification-rule-icon{width:38px;height:38px;border-radius:9px;background:var(--surface-3);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--ink-3)}
+.classification-rule-icon svg{width:18px;height:18px;stroke-width:2}
+.classification-rule-info{flex:1;min-width:0}
+.classification-rule-id{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-4);margin-bottom:2px}
+.classification-rule-name{font-family:'Inter',sans-serif;font-size:17px;font-weight:500;color:var(--ink);line-height:1.25;margin-bottom:3px}
+.classification-rule-meta{font-size:11px;color:var(--ink-4);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.classification-rule-meta .dot{color:var(--ink-5)}
+.classification-rule-meta strong{color:var(--ink-3);font-weight:500}
+.classification-rule-link{font-size:12px;color:var(--ink-2) !important;background:var(--surface) !important;border:1px solid var(--line-2) !important;padding:7px 13px;border-radius:7px;cursor:pointer;font-family:inherit;font-weight:500;flex-shrink:0;display:inline-flex;align-items:center;gap:5px;transition:all .15s ease;opacity:1 !important;text-decoration:none}
+.classification-rule-link svg{width:11px;height:11px;stroke-width:2}
+
+/* ============= RULE IMPACT ============= */
+.segment{display:inline-flex;background:var(--surface-3);border:1px solid var(--line);border-radius:8px;padding:3px;margin-bottom:18px}
+.segment button{padding:6px 14px;font-size:12px;font-weight:500;border:none;background:transparent;color:var(--ink-3);cursor:pointer;border-radius:6px;font-family:var(--font-sans, inherit);transition:all .12s ease;letter-spacing:0}
+.segment button.active{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.06),0 0 0 1px var(--line-2)}
+.diff-table{width:100%;border-collapse:collapse;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.diff-table thead th{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-4);text-align:left;padding:12px 16px;background:var(--surface-2);border-bottom:1px solid var(--line)}
+.diff-table thead th.col-field{width:130px}
+.diff-table thead th.col-status{width:120px}
+.diff-table tbody tr{border-bottom:1px solid var(--line)}
+.diff-table tbody tr:last-child{border-bottom:none}
+.diff-table tbody tr.changed{background:#FEFAF0}
+.diff-table td{padding:12px 16px;font-size:13px;vertical-align:middle}
+.diff-table td.col-field{font-weight:500;color:var(--ink-2);font-size:12px}
+.diff-table td.col-current,.diff-table td.col-proposed{font-family:'JetBrains Mono',monospace;font-size:12px}
+.diff-table td.col-current{color:var(--ink-3)}
+.diff-table td.col-proposed{color:var(--ink)}
+.diff-rem{text-decoration:line-through;text-decoration-color:var(--red);color:var(--red);opacity:.85}
+.diff-add{color:var(--green);font-weight:600}
+.change-tag{display:inline-flex;align-items:center;gap:5px;font-size:10px;padding:3px 8px;border-radius:5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.change-tag.changed{background:var(--amber-bg);color:var(--amber)}
+.change-tag.unchanged{color:var(--ink-5);background:transparent;font-weight:400;text-transform:none;letter-spacing:0;font-family:'JetBrains Mono',monospace;font-size:11px}
+.diff-summary{margin-top:14px;padding:14px 18px;background:var(--surface-2);border:1px solid var(--line);border-radius:10px;font-size:13px;color:var(--ink-2);line-height:1.55}
+.diff-summary strong{font-weight:600;color:var(--ink)}
+
+/* ============= OUTPUT PREVIEW ============= */
+.preview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.preview-cell{padding:14px 16px;background:var(--surface-2);border:1px solid var(--line);border-radius:10px}
+.preview-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-4);margin-bottom:5px}
+.preview-value{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;color:var(--ink)}
+.preview-success{padding:14px 18px;background:var(--green-bg);border:1px solid var(--green-line);border-radius:10px;display:flex;align-items:flex-start;gap:12px;font-size:13px;color:#264908;line-height:1.55}
+.preview-success svg{flex-shrink:0;color:var(--green);margin-top:1px;width:18px;height:18px;stroke-width:2}
+.preview-success strong{display:block;font-weight:600;color:#1F3B06;margin-bottom:2px}
+
+/* ============= APPROVAL HANDOFF ============= */
+.handoff-row{padding:20px 22px;border-bottom:1px solid var(--line);display:flex;align-items:flex-start;gap:14px}
+.handoff-row:last-child{border-bottom:none}
+.handoff-row.locked{background:var(--surface-2);opacity:.85}
+.handoff-stage{width:32px;height:32px;border-radius:8px;background:var(--surface-3);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:var(--ink-3)}
+.handoff-stage.active{background:var(--surface-3);color:var(--ink-2);border:1.5px solid var(--line-2)}
+.handoff-stage.locked{background:transparent;border:1.5px dashed var(--line-2);color:var(--ink-5)}
+.handoff-content{flex:1;min-width:0}
+.handoff-title{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.handoff-row.locked .handoff-title{color:var(--ink-3)}
+.handoff-desc{font-size:12px;color:var(--ink-3);line-height:1.55;margin-bottom:10px}
+.handoff-status-tag{font-size:10px;font-weight:600;padding:3px 8px;border-radius:5px;text-transform:uppercase;letter-spacing:.04em;display:inline-flex;align-items:center;gap:5px}
+.handoff-status-tag.active{background:var(--surface-3);color:var(--ink-2)}
+.handoff-status-tag.locked{background:var(--surface-3);color:var(--ink-4)}
+.handoff-actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.handoff-btn{font-size:13px;padding:8px 14px;border-radius:7px;font-weight:500;cursor:pointer;border:1px solid;font-family:inherit;display:inline-flex;align-items:center;gap:6px}
+.handoff-btn svg{width:13px;height:13px}
+.handoff-btn-primary{background:var(--brand);color:#fff;border-color:var(--brand)}
+.handoff-btn-secondary{background:#fff;color:var(--ink-2);border-color:var(--line-2)}
+
+/* ============= SIDEBAR ============= */
+.aside{display:flex;flex-direction:column;gap:16px;position:sticky;top:24px}
+.aside .card-b{padding:18px 20px}
+.aside .card-h{padding:14px 20px}
+.nextstep-now{padding:16px 20px;background:var(--surface-2);border-bottom:1px solid var(--line)}
+.nextstep-now-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3);margin-bottom:6px}
+.nextstep-now-action{font-family:'Inter',sans-serif;font-size:17px;font-weight:500;color:var(--ink);line-height:1.25;margin-bottom:5px}
+.nextstep-now-who{font-size:12px;color:var(--ink-3)}
+.workflow{display:flex;flex-direction:column;padding:8px 0}
+.wf-row{display:flex;align-items:stretch;gap:12px;font-size:13px;position:relative}
+.wf-left{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:14px}
+.wf-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;border:2px solid transparent;z-index:1;margin-top:2px}
+.wf-dot.done{background:var(--green);color:#fff}
+.wf-dot.done::after{content:"";display:block;width:4px;height:7px;border-right:1.5px solid #fff;border-bottom:1.5px solid #fff;transform:rotate(45deg) translate(-1px,-1px)}
+.wf-dot.active{background:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}
+.wf-dot.pending{background:var(--surface);border-color:var(--line-2)}
+.wf-connector{width:1.5px;flex:1;min-height:18px;margin:1px auto}
+.wf-connector.done{background:linear-gradient(to bottom,var(--green),var(--green))}
+.wf-connector.active{background:linear-gradient(to bottom,var(--brand) 0%,var(--line-2) 100%)}
+.wf-connector.pending{background:repeating-linear-gradient(to bottom,var(--line-2) 0px,var(--line-2) 4px,transparent 4px,transparent 7px)}
+.wf-connector.hidden{background:transparent}
+.wf-content{flex:1;padding-bottom:14px}
+.wf-row:last-child .wf-content{padding-bottom:4px}
+.wf-label{font-size:13px;font-weight:500;color:var(--ink);line-height:1;margin-top:2px}
+.wf-label.active{font-weight:600;color:var(--brand)}
+.wf-label.pending{color:var(--ink-4);font-weight:400}
+.wf-meta{font-size:11px;color:var(--ink-4);margin-top:3px}
+.people{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.person{display:flex;align-items:center;gap:9px;font-size:12px;color:var(--ink-3)}
+.avatar{width:26px;height:26px;border-radius:50%;background:var(--brand-soft);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:var(--brand);flex-shrink:0}
+.person strong{color:var(--ink);font-weight:500}
+.activity-source-note{font-size:11px;color:var(--ink-4);background:var(--surface-2);padding:8px 12px;border-radius:7px;margin-bottom:14px;line-height:1.45;display:flex;align-items:flex-start;gap:6px}
+.activity-source-note svg{width:12px;height:12px;flex-shrink:0;margin-top:2px;color:var(--ink-4)}
+.activity{display:flex;flex-direction:column;gap:14px}
+.act-item{display:flex;gap:10px}
+.act-avatar{width:28px;height:28px;border-radius:50%;background:var(--surface-3);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:var(--ink-3);flex-shrink:0;border:1px solid var(--line)}
+.act-avatar.jira{background:var(--surface-3);color:var(--ink-3);border-color:var(--line)}
+.act-body{flex:1}
+.act-meta{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--ink-4);margin-bottom:3px}
+.act-source{font-size:10px;font-weight:600;padding:1px 6px;border-radius:4px;letter-spacing:.04em;text-transform:uppercase}
+.act-source.system{background:var(--surface-3);color:var(--ink-3)}
+.act-source.jira{background:var(--surface-3);color:var(--ink-3)}
+.act-text{font-size:13px;color:var(--ink-2);line-height:1.45}
+.comment-box{margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+.comment-label{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-4);margin-bottom:2px}
+.comment-sublabel{font-size:11px;color:var(--ink-4);margin-bottom:8px}
+.comment-input{width:100%;min-height:72px;padding:10px 12px;font-size:13px;font-family:inherit;border:1px solid var(--line-2);border-radius:8px;background:var(--surface);color:var(--ink);resize:none;line-height:1.5}
+.comment-input:focus{outline:none;border-color:var(--brand)}
+.comment-actions{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
+.comment-sync{font-size:11px;color:var(--ink-4);display:flex;align-items:center;gap:5px}
+.comment-sync svg{width:12px;height:12px}
+.comment-submit{padding:6px 14px;font-size:12px;font-weight:500;background:var(--brand);border:none;border-radius:7px;cursor:pointer;color:#fff;font-family:inherit}
+.action-links{list-style:none;display:flex;flex-direction:column}
+.action-links li{border-bottom:1px solid var(--line)}
+.action-links li:last-child{border-bottom:none}
+.action-link{display:flex;align-items:center;gap:10px;padding:11px 0;font-size:13px;color:var(--blue);cursor:pointer;background:none;border:none;font-family:inherit;font-weight:500;width:100%;text-align:left}
+.action-link svg{width:14px;height:14px;flex-shrink:0;stroke-width:1.8}
+.action-link span{text-decoration:underline;text-underline-offset:3px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ── ACCESSIBILITY: FOCUS STATES ── */
+*:focus{outline:none}
+*:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:4px}
+button:focus-visible,a:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:6px}
+.btn:focus-visible{outline:2px solid var(--brand);outline-offset:3px}
+.sidenav-item:focus-visible{outline:2px solid var(--brand);outline-offset:-2px}
+.nav-bell:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+textarea:focus-visible{outline:2px solid var(--brand);outline-offset:0;border-color:var(--brand)}
+</style>
+</head>
+<body>
+
+<h1 class="sr-only">Request detail: Update OTC derivatives margin adjustment — RQ-001</h1>
+
+<!-- Top nav -->
+<nav class="topnav" aria-label="Main navigation">
+  <div class="nav-left">
+    <div class="nav-logo" aria-label="Subledger home">
+      <div class="nav-logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+      </div>
+      <span class="nav-logo-name">Subledger</span>
+    </div>
+    <div class="nav-divider" aria-hidden="true"></div>
+    <span class="nav-product" style="font-weight:600;color:var(--ink-2)">Rules Engine</span>
+  </div>
+  <div class="nav-right">
+    <button class="nav-bell" aria-label="Notifications — 2 unread">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      <span class="nav-bell-badge" aria-hidden="true"></span>
+    </button>
+    <div class="nav-user" aria-label="Signed in as Andrew Levine">
+      <div class="nav-avatar" aria-hidden="true">AL</div>
+      <span>Andrew Levine</span>
+    </div>
+  </div>
+</nav>
+
+<!-- App shell -->
+<div class="app-shell">
+
+<!-- Side navigation -->
+<nav class="sidenav" aria-label="Main navigation">
+  <div class="sidenav-section">Workspace</div>
+  <button class="sidenav-item" aria-label="Dashboard">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+    Dashboard
+  </button>
+  <button class="sidenav-item active" aria-label="Requests — 5 open" aria-current="page">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+    Requests
+    <span class="nav-badge">5</span>
+  </button>
+
+  <div class="sidenav-section">Rules</div>
+  <button class="sidenav-item" aria-label="All rules">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+    All rules
+  </button>
+  <button class="sidenav-item" aria-label="Rule sets">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+    Rule sets
+  </button>
+  <button class="sidenav-item" aria-label="Drafts">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+    Drafts
+    <span class="nav-badge">2</span>
+  </button>
+
+  <div class="sidenav-spacer"></div>
+  <div class="sidenav-divider"></div>
+
+  <button class="sidenav-item" aria-label="Settings">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    Settings
+  </button>
+</nav>
+
+<div class="app-content">
+<!-- Breadcrumb + actions -->
+<div class="topbar">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="#">My Requests</a>
+    <span class="sep" aria-hidden="true">/</span>
+    <span class="current" aria-current="page">RQ-001</span>
+  </nav>
+  <div class="tb-actions">
+    <button class="btn btn-warn" aria-label="Send back to requester">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg>
+      Send back
+    </button>
+    <button class="btn btn-primary" aria-label="Send for business approval">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      Send for approval
+    </button>
+  </div>
+</div>
+
+<!-- Title block -->
+<div class="titleblock">
+  <div class="title-metarow">
+    <span class="metatag metatag-neutral">Global Markets · OTC Derivatives</span>
+    <span class="metatag metatag-neutral">RQ-001</span>
+    <span class="metatag metatag-urgent">High urgency</span>
+  </div>
+  <h1 class="title-h serif">Update OTC derivatives margin adjustment</h1>
+  <div class="title-submeta">
+    <span>Submitted by <strong>Linda Daniels</strong></span>
+    <span class="dot" aria-hidden="true">·</span>
+    <span>10 Apr 2026</span>
+    <span class="dot" aria-hidden="true">·</span>
+    <span>Update request</span>
+  </div>
+  <div class="status-banner" role="status">
+    <svg class="status-banner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <div><strong>Execution complete.</strong> The rule change has been verified and built. Send to the requester for confirmation before deploying.</div>
+  </div>
+</div>
+
+
+<!-- Body -->
+<div class="body">
+  <main class="main">
+
+    <!-- Request summary -->
+    <section class="card" aria-labelledby="summary-heading">
+      <div class="card-h">
+        <div class="card-h-title">
+          <svg class="card-h-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          <span class="card-h-label" id="summary-heading">Request summary</span>
+        </div>
+      </div>
+      <div class="card-b">
+        <p class="summary-text">Update mapping for OTC derivatives margin adjustment to reflect new Sub-type B structure introduced in Q1 2026 product catalogue. Aligns subledger output with revised product taxonomy and ensures correct GL posting for EMEA Holdings book.</p>
+        <div class="summary-grid">
+          <div class="summary-field">
+            <div class="field-label">Business justification</div>
+            <div class="field-value">Aligns with Q1 2026 product taxonomy update and required by audit.</div>
+          </div>
+          <div class="summary-field">
+            <div class="field-label">Request type</div>
+            <div class="field-value">Update existing mapping</div>
+          </div>
+        </div>
+        <div class="evidence-section">
+          <div class="evidence-label">Evidence attached · 2 files</div>
+          <div class="evidence-row">
+            <svg class="ev-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span class="ev-name">OTC_mapping_matrix.pdf</span>
+            <span class="ev-size">1.2 MB</span>
+            <button class="ev-dl">Download</button>
+          </div>
+          <div class="evidence-row">
+            <svg class="ev-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span class="ev-name">Q1_2026_product_mapping.xlsx</span>
+            <span class="ev-size">340 KB</span>
+            <button class="ev-dl">Download</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Conditions -->
+    <section class="card" aria-labelledby="conditions-heading">
+      <div class="card-h">
+        <div class="card-h-title">
+          <svg class="card-h-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+          <span class="card-h-label" id="conditions-heading">Conditions</span>
+        </div>
+      </div>
+      <div class="card-b">
+        <div class="cond-grid">
+          <div class="cond-cell">
+            <div class="cond-label">Legal entity</div>
+            <div class="cond-value">EMEA Holdings · 0300</div>
+          </div>
+          <div class="cond-cell">
+            <div class="cond-label">Product</div>
+            <div class="cond-value">OTC Derivatives</div>
+          </div>
+          <div class="cond-cell">
+            <div class="cond-label">Transaction type</div>
+            <div class="cond-value">Structured · 0012</div>
+          </div>
+          <div class="cond-cell">
+            <div class="cond-label">Natural account</div>
+            <div class="cond-value">4402 · OTC Derivatives Liability</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rule impact -->
+    <section class="card" aria-labelledby="rule-impact-heading">
+      <div class="card-h">
+        <div class="card-h-title">
+          <svg class="card-h-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+          <span class="card-h-label" id="rule-impact-heading">Rule impact</span>
+        </div>
+        
+      </div>
+      <div class="card-b">
+        <div class="classification">
+          <div class="classification-top">
+            <div class="classification-label">
+              Rule action — clone &amp; update
+            </div>
+            <button class="classification-edit">Change action</button>
+          </div>
+          <div class="classification-rule">
+            <div class="classification-rule-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+            </div>
+            <div class="classification-rule-info">
+              <div class="classification-rule-id">RL-0001 · RS-014</div>
+              <div class="classification-rule-name serif">OTC Derivatives — EMEA booking</div>
+              <div class="classification-rule-meta">
+                <span><strong>Active</strong></span>
+                <span class="dot" aria-hidden="true">·</span>
+                <span>Last used 18 Apr 2026</span>
+                <span class="dot" aria-hidden="true">·</span>
+                <span>4 conditions, 2 outputs</span>
+              </div>
+            </div>
+            <button class="classification-rule-link" aria-label="Open rule RL-0001 in a new view">
+              Open rule
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="segment" role="tablist" aria-label="Comparison view options">
+          <button class="active" role="tab" aria-selected="true">Comparison</button>
+          <button role="tab" aria-selected="false">Current rule</button>
+          <button role="tab" aria-selected="false">Proposed rule</button>
+        </div>
+
+        <table class="diff-table" aria-label="Rule field comparison: current vs proposed">
+          <thead>
+            <tr>
+              <th class="col-field" scope="col">Field</th>
+              <th scope="col">Current</th>
+              <th scope="col">Proposed</th>
+              <th class="col-status" scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-field">entity</td>
+              <td class="col-current">EMEA Holdings</td>
+              <td class="col-proposed">EMEA Holdings</td>
+              <td><span class="change-tag unchanged">—</span></td>
+            </tr>
+            <tr>
+              <td class="col-field">product</td>
+              <td class="col-current">OTC</td>
+              <td class="col-proposed">OTC</td>
+              <td><span class="change-tag unchanged">—</span></td>
+            </tr>
+            <tr class="changed">
+              <td class="col-field">tx_type</td>
+              <td class="col-current"><span class="diff-rem">Structured</span></td>
+              <td class="col-proposed"><span class="diff-add">Structured — Sub-type B</span></td>
+              <td><span class="change-tag changed">Changed</span></td>
+            </tr>
+            <tr>
+              <td class="col-field">mapping</td>
+              <td class="col-current">GL-4402</td>
+              <td class="col-proposed">GL-4402</td>
+              <td><span class="change-tag unchanged">—</span></td>
+            </tr>
+            <tr class="changed">
+              <td class="col-field">sub_type</td>
+              <td class="col-current"><span class="diff-rem">null</span></td>
+              <td class="col-proposed"><span class="diff-add">B</span></td>
+              <td><span class="change-tag changed">Changed</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="diff-summary" role="status">
+          <strong>2 of 5 fields changed.</strong> tx_type updated from "Structured" to "Structured — Sub-type B". sub_type updated from null to "B".
+        </div>
+      </div>
+    </section>
+
+    <!-- Output preview -->
+    <section class="card" aria-labelledby="output-heading">
+      <div class="card-h">
+        <div class="card-h-title">
+          <svg class="card-h-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          <span class="card-h-label" id="output-heading">Output preview</span>
+        </div>
+        <span class="card-h-meta ok">3 accounts impacted</span>
+      </div>
+      <div class="card-b">
+        <div class="preview-grid">
+          <div class="preview-cell">
+            <div class="preview-label">Impact 1</div>
+            <div class="preview-value">GL-0012</div>
+          </div>
+          <div class="preview-cell">
+            <div class="preview-label">Impact 2</div>
+            <div class="preview-value">OTC Derivatives</div>
+          </div>
+          <div class="preview-cell">
+            <div class="preview-label">Impact 3</div>
+            <div class="preview-value">Debit · GL-9901</div>
+          </div>
+        </div>
+        <div class="preview-success" role="status">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          <div>
+            <strong>Rule change would correctly restructure the mapping.</strong>
+            Estimated effect: reclassification across 3 GL accounts, applied to approximately 140 transactions per month based on 30-day history.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Approval & deployment -->
+    <section class="card" aria-labelledby="approval-heading">
+      <div class="card-h">
+        <div class="card-h-title">
+          <svg class="card-h-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          <span class="card-h-label" id="approval-heading">Approval &amp; deployment</span>
+        </div>
+      </div>
+
+      <div class="handoff-row">
+        <div class="handoff-stage active" aria-label="Step 1, active">1</div>
+        <div class="handoff-content">
+          <div class="handoff-title">Send for business approval</div>
+          <div class="handoff-desc">The requester will receive an email with a view-only summary of the rule change, evidence files, and impact preview. They confirm the change matches their intent before deployment.</div>
+          <div style="display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--green);margin-top:10px;margin-bottom:2px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Ready to send</div>
+          <div class="handoff-actions">
+            <button class="handoff-btn handoff-btn-primary">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Send for approval
+            </button>
+            <button style="background:none;border:none;cursor:pointer;font-family:inherit;font-size:13px;font-weight:500;color:var(--blue);text-decoration:underline;text-underline-offset:3px;padding:0;display:inline-flex;align-items:center;gap:5px">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              Preview email
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="handoff-row locked">
+        <div class="handoff-stage locked" aria-label="Step 2, locked">2</div>
+        <div class="handoff-content">
+          <div class="handoff-title">
+            Deploy to production
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-label="Locked" style="color:var(--ink-4)"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <div class="handoff-desc">Once the requester confirms the rule change reflects their intent, you'll be able to deploy the update to production from this step.</div>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Sidebar -->
+  <aside class="aside" aria-label="Request status and actions">
+
+    <div class="card">
+      <div class="card-h">
+        <span class="card-h-label">Next steps</span>
+      </div>
+      <div class="nextstep-now">
+        <div class="nextstep-now-label">Required now</div>
+        <div class="nextstep-now-action serif">Send for business approval</div>
+        <div class="nextstep-now-who">Awaiting your action</div>
+      </div>
+      <div class="card-b">
+        <div class="workflow" role="list" aria-label="Workflow stages">
+          <div class="wf-row" role="listitem">
+            <div class="wf-left">
+              <div class="wf-dot done" aria-label="Complete"></div>
+              <div class="wf-connector done"></div>
+            </div>
+            <div class="wf-content">
+              <div class="wf-label">Initiation</div>
+              <div class="wf-meta">Linda Daniels · 10 Apr 2026</div>
+            </div>
+          </div>
+          <div class="wf-row" role="listitem">
+            <div class="wf-left">
+              <div class="wf-dot done" aria-label="Complete"></div>
+              <div class="wf-connector done"></div>
+            </div>
+            <div class="wf-content">
+              <div class="wf-label">Verification</div>
+              <div class="wf-meta">Andrew Levine · 20 Apr 2026</div>
+            </div>
+          </div>
+          <div class="wf-row" role="listitem">
+            <div class="wf-left">
+              <div class="wf-dot done" aria-label="Complete"></div>
+              <div class="wf-connector active"></div>
+            </div>
+            <div class="wf-content">
+              <div class="wf-label">Execution</div>
+              <div class="wf-meta">Andrew Levine · 21 Apr 2026</div>
+            </div>
+          </div>
+          <div class="wf-row" role="listitem">
+            <div class="wf-left">
+              <div class="wf-dot active" aria-label="In progress"></div>
+              <div class="wf-connector pending"></div>
+            </div>
+            <div class="wf-content">
+              <div class="wf-label active">Approval</div>
+              <div class="wf-meta">In progress</div>
+            </div>
+          </div>
+          <div class="wf-row" role="listitem">
+            <div class="wf-left">
+              <div class="wf-dot pending" aria-label="Not started"></div>
+              <div class="wf-connector hidden"></div>
+            </div>
+            <div class="wf-content">
+              <div class="wf-label pending">Deployment</div>
+              <div class="wf-meta">Not started</div>
+            </div>
+          </div>
+        </div>
+        <div class="people">
+          <div class="person">
+            <span class="avatar" aria-hidden="true">LD</span>
+            <span>Submitted by <strong>Linda Daniels</strong></span>
+          </div>
+          <div class="person">
+            <span class="avatar" aria-hidden="true">AL</span>
+            <span>Assigned to <strong>You</strong></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-h">
+        <span class="card-h-label">Activity</span>
+      </div>
+      <div class="card-b">
+        <div class="activity-source-note" role="note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <span>Includes events from this platform and synced Jira activity. The requester is not yet in this platform — comments below sync back to Jira.</span>
+        </div>
+        <div class="activity">
+          <div class="act-item">
+            <span class="act-avatar" aria-hidden="true">AL</span>
+            <div class="act-body">
+              <div class="act-meta">
+                <span>Andrew Levine · 21 Apr 2026</span>
+                <span class="act-source system">Subledger</span>
+              </div>
+              <div class="act-text">Classified as update to RL-0001. Verified rule change is technically correct.</div>
+            </div>
+          </div>
+          <div class="act-item">
+            <span class="act-avatar jira" aria-hidden="true">LD</span>
+            <div class="act-body">
+              <div class="act-meta">
+                <span>Linda Daniels · 14 Apr 2026</span>
+                <span class="act-source jira">Jira</span>
+              </div>
+              <div class="act-text">Added Q1 2026 product mapping spreadsheet as supporting evidence.</div>
+            </div>
+          </div>
+          <div class="act-item">
+            <span class="act-avatar jira" aria-hidden="true">LD</span>
+            <div class="act-body">
+              <div class="act-meta">
+                <span>Linda Daniels · 10 Apr 2026</span>
+                <span class="act-source jira">Jira</span>
+              </div>
+              <div class="act-text">Submitted request RQ-001 with mapping matrix and business justification.</div>
+            </div>
+          </div>
+        </div>
+        <div class="comment-box">
+          <label class="comment-label" for="comment-input">Comment</label>
+          <div class="comment-sublabel">Visible to requester via Jira sync.</div>
+          <textarea id="comment-input" class="comment-input" placeholder="Reply to the requester or note something for the audit trail…"></textarea>
+          <div class="comment-actions">
+            <div class="comment-sync" aria-label="Comments sync to Jira">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+              Syncs to Jira
+            </div>
+            <button class="comment-submit">Post comment</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-h">
+        <span class="card-h-label">Other actions</span>
+      </div>
+      <div class="card-b">
+        <ul class="action-links">
+          <li>
+            <button class="action-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              <span>View in Jira</span>
+            </button>
+          </li>
+          <li>
+            <button class="action-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Download all evidence</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </aside>
+</div>
+
+</div><!-- app-content -->
+</div><!-- app-shell -->
+
+</body>
+</html>
