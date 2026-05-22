@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strategic Subledger — Rules Engine · Lauryn Goodlett</title>
+<style>
+@font-face{font-family:'General Sans';src:url('GeneralSans-Light.otf') format('opentype');font-weight:300;font-style:normal}
+@font-face{font-family:'General Sans';src:url('GeneralSans-Regular.otf') format('opentype');font-weight:400;font-style:normal}
+@font-face{font-family:'General Sans';src:url('GeneralSans-Italic.otf') format('opentype');font-weight:400;font-style:italic}
+@font-face{font-family:'General Sans';src:url('GeneralSans-Medium.otf') format('opentype');font-weight:500;font-style:normal}
+@font-face{font-family:'General Sans';src:url('GeneralSans-Semibold.otf') format('opentype');font-weight:600;font-style:normal}
+@font-face{font-family:'General Sans';src:url('GeneralSans-Bold.otf') format('opentype');font-weight:700;font-style:normal}
+</style>
+<style>
+:root{
+  --bg:#FAF9F6;
+  --surface:#FFFFFF;
+  --ink:#1D1F21;
+  --ink-2:#3A3C3E;
+  --ink-3:#6B6D6F;
+  --ink-4:#6E6E6B;
+  --ink-5:#C8C8C2;
+  --line:#E8E8E4;
+  --line-2:#D8D8D2;
+  --accent:#1A2E5A;
+  --accent-soft:#EEF1F8;
+  --green:#3B6D11;
+  --green-bg:#EAF3DE;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);font-family:'General Sans',sans-serif;font-weight:500;color:var(--ink);-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.6}
+.display{font-family:'General Sans',sans-serif;font-weight:600}
+.label{font-family:'General Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4)}
+
+/* ── LAYOUT ── */
+.page{max-width:760px;margin:0 auto;padding:0 32px 120px}
+.wide{max-width:900px;margin:0 auto;padding:0 32px}
+.full{width:100%;background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+
+/* ── HERO ── */
+.hero{padding:72px 0 56px}
+.hero-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+.hero-tag{font-family:'General Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:20px;background:var(--surface);border:1px solid var(--line-2);color:var(--ink-3)}
+.hero-tag.accent{background:var(--accent-soft);color:var(--accent);border-color:transparent}
+.hero-title{font-family:'General Sans',sans-serif;font-weight:600;font-size:48px;line-height:1.1;color:var(--ink);margin-bottom:20px;letter-spacing:-0.02em}
+.hero-title em{font-style:italic;font-weight:300;color:var(--ink-3)}
+.hero-sub{font-size:18px;color:var(--ink-3);line-height:1.65;max-width:600px;margin-bottom:36px}
+.hero-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);padding-top:24px}
+.meta-item{padding-right:24px;border-right:1px solid var(--line)}
+.meta-item:last-child{border-right:none}
+.meta-label{font-family:'General Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);margin-bottom:5px}
+.meta-value{font-size:13px;color:var(--ink-2);font-weight:500;line-height:1.4}
+
+/* ── SECTION ── */
+.section{padding:56px 0}
+.section+.section{border-top:1px solid var(--line)}
+.section-label{margin-bottom:12px}
+.section-heading{font-family:'General Sans',sans-serif;font-weight:600;font-size:32px;color:var(--ink);line-height:1.15;margin-bottom:18px;letter-spacing:-0.01em}
+.body-text{font-size:15px;font-weight:500;color:var(--ink-3);line-height:1.75;margin-bottom:14px}
+.body-text:last-child{margin-bottom:0}
+.body-text strong{color:var(--ink-2);font-weight:600}
+
+/* ── CALLOUT ── */
+.callout{margin:24px 0;padding:20px 24px;border-left:2px solid var(--ink-5);background:var(--surface)}
+.callout p{font-family:'General Sans',sans-serif;font-weight:600;font-size:18px;color:var(--ink-2);line-height:1.5;font-style:italic}
+
+/* ── WHY HARD GRID ── */
+.complexity-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:24px 0}
+.complexity-item{padding:16px 18px;background:var(--surface);border:1px solid var(--line);border-radius:10px;display:flex;align-items:flex-start;gap:12px}
+.complexity-num{font-family:'General Sans',sans-serif;font-size:11px;font-weight:700;color:var(--ink-5);flex-shrink:0;margin-top:1px}
+.complexity-text{font-size:13px;color:var(--ink-2);line-height:1.5;font-weight:500}
+
+/* ── WORKFLOW ── */
+.flow-wrap{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px;margin:28px 0;overflow-x:auto}
+.flow-title{font-family:'General Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);margin-bottom:20px}
+.swimlane{display:flex;flex-direction:column;gap:6px;min-width:560px}
+.lane-row{display:flex;align-items:center}
+.lane-label{width:96px;flex-shrink:0;font-family:'General Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-4);padding-right:14px;text-align:right}
+.lane-stages{display:flex;flex:1;gap:4px;align-items:center}
+.stage-box{flex:1;padding:8px 6px;border-radius:8px;text-align:center;font-size:11px;font-weight:600;font-family:'General Sans',sans-serif;line-height:1.3;min-height:40px;display:flex;align-items:center;justify-content:center}
+.stage-empty{flex:1;min-height:40px}
+.sb-biz{background:#EEF1F8;color:var(--accent);border:1px solid #C8D0E8}
+.sb-acg{background:var(--green-bg);color:var(--green);border:1px solid #C0DD97}
+.sb-cond{background:var(--bg);color:var(--ink-4);border:1px dashed var(--line-2)}
+.lane-divider{height:1px;background:var(--line);margin:2px 0 2px 96px}
+.flow-legend{display:flex;gap:20px;margin-top:16px;flex-wrap:wrap}
+.leg-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-4)}
+.leg-dot{width:12px;height:12px;border-radius:3px}
+
+/* ── SCREENS ── */
+.screens-intro{font-size:15px;font-weight:500;color:var(--ink-3);line-height:1.75;margin-bottom:32px}
+.screen-block{margin-bottom:48px}
+.screen-block:last-child{margin-bottom:0}
+.screen-meta{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+.screen-info{}
+.screen-number{font-family:'General Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);margin-bottom:4px}
+.screen-name{font-family:'General Sans',sans-serif;font-weight:600;font-size:22px;color:var(--ink);line-height:1.2}
+.screen-desc{font-size:13px;color:var(--ink-3);margin-top:4px;max-width:400px;line-height:1.5}
+.screen-link{display:inline-flex;align-items:center;gap:7px;font-family:'General Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);text-decoration:none;padding:9px 16px;border:1px solid var(--accent);border-radius:8px;white-space:nowrap;transition:all .15s ease;flex-shrink:0}
+.screen-link:hover{background:var(--accent);color:#fff}
+.screen-link svg{width:13px;height:13px;stroke-width:2}
+.screen-preview{border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--surface);position:relative}
+.screen-preview-bar{background:#F3F4F6;border-bottom:1px solid var(--line);padding:10px 16px;display:flex;align-items:center;gap:7px}
+.browser-dot{width:10px;height:10px;border-radius:50%;background:var(--line-2)}
+.browser-url{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:5px;padding:4px 10px;font-size:11px;color:var(--ink-4);font-family:'General Sans',sans-serif;margin:0 12px}
+.screen-preview iframe{width:100%;height:560px;border:none;pointer-events:none;display:block}
+.screen-preview-fade{position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(to bottom,transparent,var(--surface));pointer-events:none}
+.screen-annotations{margin-top:16px;display:flex;flex-direction:column;gap:8px}
+.ann{display:flex;gap:12px;padding:12px 16px;background:var(--surface);border:1px solid var(--line);border-radius:8px}
+.ann-num{width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;font-family:'General Sans',sans-serif;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.ann-text{font-size:13px;font-weight:500;color:var(--ink-3);line-height:1.55}
+.ann-text strong{color:var(--ink-2);font-weight:600}
+
+/* ── DECISIONS ── */
+.decisions{display:flex;flex-direction:column;gap:0}
+.decision{display:flex;gap:24px;padding:24px 0;border-bottom:1px solid var(--line)}
+.decision:last-child{border-bottom:none}
+.decision-num{font-family:'General Sans',sans-serif;font-weight:600;font-size:36px;color:var(--ink-5);flex-shrink:0;line-height:1;width:40px}
+.decision-content{}
+.decision-title{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:6px;line-height:1.3}
+.decision-text{font-size:14px;font-weight:500;color:var(--ink-3);line-height:1.7}
+
+/* ── OUTCOMES ── */
+.outcomes-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:28px}
+.outcome{padding:20px;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+.outcome-label{font-family:'General Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);margin-bottom:8px}
+.outcome-text{font-size:14px;font-weight:500;color:var(--ink-2);line-height:1.55}
+
+/* ── FOOTER ── */
+.cs-footer{padding:40px 0;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;flex-wrap:gap}
+.footer-name{font-family:'General Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-4)}
+.footer-back{display:inline-flex;align-items:center;gap:6px;font-family:'General Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);text-decoration:none;transition:color .12s ease}
+.footer-back:hover{color:var(--ink)}
+.footer-back svg{width:13px;height:13px;stroke-width:2}
+
+@media(max-width:640px){
+  .hero-title{font-size:32px}
+  .hero-meta{grid-template-columns:1fr 1fr;gap:16px}
+  .meta-item{border-right:none;padding-right:0}
+  .complexity-grid{grid-template-columns:1fr}
+  .outcomes-grid{grid-template-columns:1fr}
+  .screen-meta{flex-direction:column}
+}
+
+*:focus{outline:none}
+*:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero-eyebrow">
+      <span class="hero-tag accent">Flagship project</span>
+      <span class="hero-tag">Enterprise SaaS</span>
+      <span class="hero-tag">Workflow Design</span>
+      <span class="hero-tag">Systems Thinking</span>
+    </div>
+    <h1 class="hero-title">Redesigning a fragmented<br><em>accounting controls workflow</em></h1>
+    <p class="hero-sub">An 8-stage, cross-functional workflow spanning Jira, spreadsheets, and institutional memory — rebuilt as a scalable operational platform.</p>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <div class="meta-label">Role</div>
+        <div class="meta-value">Solo product designer</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Timeline</div>
+        <div class="meta-value">Sept 2024 – April 2025</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Collaborators</div>
+        <div class="meta-value">UX researcher, PM, engineering</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Status</div>
+        <div class="meta-value">In development</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Problem -->
+  <section class="section" aria-labelledby="problem-heading">
+    <div class="label section-label">The problem</div>
+    <h2 class="section-heading" id="problem-heading">A high-stakes workflow running on tribal knowledge</h2>
+    <p class="body-text">The Accounting Controls Group (ACG) manages the financial rules that determine how every transaction maps to a general ledger output. When a rule needs to change — a new product, a regulatory update, a business restructure — a request enters their queue. ACG reviews it, builds the change, gets it approved, and deploys it.</p>
+    <p class="body-text">In practice, none of that happened in one place. Requests arrived through Jira, almost always incomplete. Clarification threads stretched across comments and messages. Rule logic was built manually with no shared reference. Approvals were tracked informally. The knowledge of how to do any of it correctly lived in specific people — not the system.</p>
+    <div class="callout">
+      <p>"The back-and-forth is the work. We're not slow — we're blocked before we even start."</p>
+    </div>
+    <p class="body-text">The first six months were spent mapping this reality through stakeholder workshops and secondary research, without direct user access. When user research began in January 2025, it pressure-tested those assumptions against actual ACG workflows — and reshaped the design direction in the process.</p>
+  </section>
+
+  <!-- Why hard -->
+  <section class="section" aria-labelledby="complexity-heading">
+    <div class="label section-label">Why this was uniquely complex</div>
+    <h2 class="section-heading" id="complexity-heading">This wasn't a form redesign</h2>
+    <p class="body-text">Enterprise workflow problems often look simple from the outside. This one had compounding constraints that made surface-level solutions fail immediately.</p>
+    <div class="complexity-grid">
+      <div class="complexity-item">
+        <span class="complexity-num">01</span>
+        <span class="complexity-text">8-stage workflow across 3 actor groups with no shared system of record</span>
+      </div>
+      <div class="complexity-item">
+        <span class="complexity-num">02</span>
+        <span class="complexity-text">High governance sensitivity — rules directly impact financial outputs and audit trails</span>
+      </div>
+      <div class="complexity-item">
+        <span class="complexity-num">03</span>
+        <span class="complexity-text">Tribal knowledge risk — critical logic lived in people, not documentation</span>
+      </div>
+      <div class="complexity-item">
+        <span class="complexity-num">04</span>
+        <span class="complexity-text">Business users not yet in the platform — design had to bridge two worlds simultaneously</span>
+      </div>
+      <div class="complexity-item">
+        <span class="complexity-num">05</span>
+        <span class="complexity-text">Development building screen-by-screen without a shared workflow model</span>
+      </div>
+      <div class="complexity-item">
+        <span class="complexity-num">06</span>
+        <span class="complexity-text">No user access in Phase 1 — design had to be grounded in stakeholder synthesis, then validated</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Workflow -->
+  <section class="section" aria-labelledby="workflow-heading">
+    <div class="label section-label">The system</div>
+    <h2 class="section-heading" id="workflow-heading">Map the workflow before designing the screens</h2>
+    <p class="body-text">Before a single screen was designed, the end-to-end workflow had to be documented. Development had been building components in isolation — technically correct but disconnected from the flow around them. Business stakeholders kept rejecting builds not because the screens were wrong, but because no one had mapped how they connected.</p>
+    <p class="body-text">The workflow map became the most consequential design artifact on the project — not a UI component, but a shared model that reoriented the team around user goals rather than ticket completion.</p>
+
+    <div class="flow-wrap">
+      <div class="flow-title">8-stage workflow · 3 actor groups</div>
+      <div class="swimlane">
+        <div class="lane-row">
+          <div class="lane-label">Business</div>
+          <div class="lane-stages">
+            <div class="stage-box sb-biz">Submit request</div>
+            <div class="stage-empty"></div>
+            <div class="stage-empty"></div>
+            <div class="stage-empty"></div>
+            <div class="stage-empty"></div>
+            <div class="stage-empty"></div>
+            <div class="stage-box sb-biz">Validate pre-deploy</div>
+            <div class="stage-empty"></div>
+          </div>
+        </div>
+        <div class="lane-divider"></div>
+        <div class="lane-row">
+          <div class="lane-label">ACG</div>
+          <div class="lane-stages">
+            <div class="stage-empty"></div>
+            <div class="stage-box sb-acg">Verify &amp; challenge</div>
+            <div class="stage-box sb-acg">Decision</div>
+            <div class="stage-box sb-acg">Build rule</div>
+            <div class="stage-box sb-acg">Test</div>
+            <div class="stage-box sb-acg">Approve</div>
+            <div class="stage-empty"></div>
+            <div class="stage-box sb-acg">Deploy</div>
+          </div>
+        </div>
+        <div class="lane-divider"></div>
+        <div class="lane-row">
+          <div class="lane-label">Governance</div>
+          <div class="lane-stages">
+            <div class="stage-empty"></div>
+            <div class="stage-empty"></div>
+            <div class="stage-empty"></div>
+            <div class="stage-empty"></div>
+            <div class="stage-empty"></div>
+            <div class="stage-box sb-cond">NPA review (conditional)</div>
+            <div class="stage-empty"></div>
+            <div class="stage-empty"></div>
+          </div>
+        </div>
+      </div>
+      <div class="flow-legend">
+        <div class="leg-item"><div class="leg-dot sb-biz" style="border:1px solid #C8D0E8"></div>Business</div>
+        <div class="leg-item"><div class="leg-dot sb-acg" style="border:1px solid #C0DD97"></div>ACG</div>
+        <div class="leg-item"><div class="leg-dot sb-cond" style="border:1px dashed var(--line-2)"></div>Conditional</div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /page -->
+
+<!-- Screens — full width section -->
+<div class="full">
+  <div class="page">
+    <section class="section" aria-labelledby="design-heading">
+      <div class="label section-label">The design</div>
+      <h2 class="section-heading" id="design-heading">Request details — a workspace, not a page</h2>
+      <p class="screens-intro">The request details surface is the core of the ACG workflow — where they verify, classify, build, and ultimately approve rule changes. Rather than a static detail view, it was designed as a dynamic workspace that responds to where the request is in the workflow.</p>
+      <div style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 22px;margin:0 0 28px;display:flex;gap:16px;align-items:flex-start">
+        <div style="font-family:'General Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);margin-top:2px;flex-shrink:0">Role context</div>
+        <div style="font-size:14px;color:var(--ink-3);line-height:1.65">This view belongs to an ACG team member who can update rules and act on requests assigned to them — but cannot reassign requests or access other teams' work. The locked and unlocked states aren't just workflow sequencing. They reflect what this user is permitted to do at this stage. Permissions are enforced by the system, not by convention.</div>
+      </div>
+      <p class="screens-intro" style="margin-top:0">Two states tell the full story.</p>
+
+      <!-- Screen 1 -->
+      <div class="screen-block">
+        <div class="screen-meta">
+          <div class="screen-info">
+            <div class="screen-number">Screen 01 of 02</div>
+            <div class="screen-name">Incoming request</div>
+            <div class="screen-desc">A new request arrives. ACG reviews the details, verifies the intent, and classifies it to a rule before any build work begins.</div>
+          </div>
+          <a href="request_detail_incoming.html" target="_blank" class="screen-link" aria-label="Open incoming request screen in full">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View full screen
+          </a>
+        </div>
+        <div class="screen-preview">
+          <div class="screen-preview-bar" aria-hidden="true">
+            <div class="browser-dot"></div>
+            <div class="browser-dot"></div>
+            <div class="browser-dot"></div>
+            <div class="browser-url">subledger / requests / RQ-001</div>
+          </div>
+          <iframe src="request_detail_incoming.html" title="Incoming request detail screen — ACG workflow" loading="lazy"></iframe>
+          <div class="screen-preview-fade" aria-hidden="true"></div>
+        </div>
+        <div class="screen-annotations" aria-label="Design decisions for incoming request screen">
+          <div class="ann">
+            <div class="ann-num" aria-hidden="true">1</div>
+            <div class="ann-text"><strong>Status banner as instruction, not just information.</strong> Rather than showing a status label, the banner tells ACG exactly what to do next in plain language. This replaces the mental model ACG had to maintain across multiple tools.</div>
+          </div>
+          <div class="ann">
+            <div class="ann-num" aria-hidden="true">2</div>
+            <div class="ann-text"><strong>Classification as the first ACG action.</strong> ACG links the request to an existing rule and flags it for a clone — live rules are never edited directly. The cloned version carries the proposed changes and requires an effective date before it can replace the original. This is the "Decision" stage made explicit in the UI.</div>
+          </div>
+          <div class="ann">
+            <div class="ann-num" aria-hidden="true">3</div>
+            <div class="ann-text"><strong>Downstream sections locked until classification is complete.</strong> Output preview and approval/deployment steps are unavailable — not hidden, just clearly locked. ACG understands the sequence without needing documentation to explain it.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Screen 2 -->
+      <div class="screen-block">
+        <div class="screen-meta">
+          <div class="screen-info">
+            <div class="screen-number">Screen 02 of 02</div>
+            <div class="screen-name">Ready for approval</div>
+            <div class="screen-desc">Execution is complete. The rule has been classified, built, and verified. ACG sends it to the requester for confirmation before deploying.</div>
+          </div>
+          <a href="request_detail_sanitized.html" target="_blank" class="screen-link" aria-label="Open approval state screen in full">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View full screen
+          </a>
+        </div>
+        <div class="screen-preview">
+          <div class="screen-preview-bar" aria-hidden="true">
+            <div class="browser-dot"></div>
+            <div class="browser-dot"></div>
+            <div class="browser-dot"></div>
+            <div class="browser-url">subledger / requests / RQ-001</div>
+          </div>
+          <iframe src="request_detail_sanitized.html" title="Approval state request detail screen — ACG workflow" loading="lazy"></iframe>
+          <div class="screen-preview-fade" aria-hidden="true"></div>
+        </div>
+        <div class="screen-annotations" aria-label="Design decisions for approval state screen">
+          <div class="ann">
+            <div class="ann-num" aria-hidden="true">4</div>
+            <div class="ann-text"><strong>Diff view for rule impact.</strong> When a request modifies an existing rule, ACG needs to see exactly what's changing — not just the proposed state. The side-by-side comparison is what enables confident approval rather than speculative approval.</div>
+          </div>
+          <div class="ann">
+            <div class="ann-num" aria-hidden="true">5</div>
+            <div class="ann-text"><strong>Output preview before sending.</strong> ACG can see the final GL impact — accounts affected, estimated transaction volume — before the requester ever sees it. Confidence before sign-off, not after.</div>
+          </div>
+          <div class="ann">
+            <div class="ann-num" aria-hidden="true">6</div>
+            <div class="ann-text"><strong>The Jira sync note is intentional architecture.</strong> Business users aren't yet in the platform — comments sync back to Jira so the requester stays in the loop without needing access. This bridge is a designed decision, not a workaround. The validation surface, the handoff sequence, the rule diff — it's all built for business users to step into directly when the time comes.</div>
+          </div>
+          <div class="ann">
+            <div class="ann-num" aria-hidden="true">7</div>
+            <div class="ann-text"><strong>Deploy locked until business approves.</strong> The two-step handoff — send for approval, then deploy — enforces the governance sequence by design. ACG can't skip a step. The system makes compliance the path of least resistance.</div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+</div><!-- /full -->
+
+<div class="page">
+
+  <!-- Key decisions -->
+  <section class="section" aria-labelledby="decisions-heading">
+    <div class="label section-label">Key decisions</div>
+    <h2 class="section-heading" id="decisions-heading">What shaped the design</h2>
+    <div class="decisions">
+      <div class="decision">
+        <div class="decision-num" aria-hidden="true">01</div>
+        <div class="decision-content">
+          <div class="decision-title">In-platform actions drive workflow state — not manual status updates</div>
+          <div class="decision-text">Each stage advances because someone completed a real piece of work. Classifying a request to a rule completes Verification. Saving the cloned rule change completes Execution. No one drags a status card. Live rules are never edited directly — ACG always works on a clone with a defined effective date, so the original stays active until the replacement is ready to deploy. The activity feed is the audit trail that makes this visible.</div>
+        </div>
+      </div>
+      <div class="decision">
+        <div class="decision-num" aria-hidden="true">02</div>
+        <div class="decision-content">
+          <div class="decision-title">Workflow-first, not screen-first</div>
+          <div class="decision-text">The most impactful design work wasn't a component or a layout — it was documenting the eight-stage workflow and getting engineering and stakeholders aligned on it before building continued. Dev had been producing technically correct screens in the wrong sequence. Business kept rejecting them. The workflow map gave the team a shared model to build against and reframed UX as the function that maintained the end-to-end view.</div>
+        </div>
+      </div>
+      <div class="decision">
+        <div class="decision-num" aria-hidden="true">03</div>
+        <div class="decision-content">
+          <div class="decision-title">Designed for a two-sided platform, built for one side first</div>
+          <div class="decision-text">Business users aren't in the platform yet — they receive a structured email summary to validate before deployment. The design explicitly acknowledges this in the activity feed rather than hiding it. The architecture is already built for them to enter the platform when the time comes. The validation surface, the handoff sequence, the visibility into rule changes — it's all there. The bridge is temporary. The destination is designed.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Outcomes -->
+  <section class="section" aria-labelledby="outcomes-heading">
+    <div class="label section-label">What shifted</div>
+    <h2 class="section-heading" id="outcomes-heading">From screen delivery to workflow alignment</h2>
+    <p class="body-text">The measurable outcomes of this project aren't in analytics — they're in how the team thinks and works. Those are often the harder changes to make in an enterprise environment.</p>
+    <div class="outcomes-grid">
+      <div class="outcome">
+        <div class="outcome-label">Team alignment</div>
+        <div class="outcome-text">Dev shifted from screen-by-screen to workflow-first after the journey documentation was introduced. Business rejection rate on builds dropped significantly.</div>
+      </div>
+      <div class="outcome">
+        <div class="outcome-label">Design governance</div>
+        <div class="outcome-text">UX established as a formal sign-off gate in the development process — documented in Jira story requirements, not just assumed.</div>
+      </div>
+      <div class="outcome">
+        <div class="outcome-label">Research foundation</div>
+        <div class="outcome-text">5 user interviews reoriented the design from stakeholder assumptions to actual ACG workflows, surfacing gaps that hadn't been documented anywhere in the organisation.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="cs-footer">
+    <span class="footer-name">Lauryn Goodlett · Portfolio 2025</span>
+    <a href="/" class="footer-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back to work
+    </a>
+  </footer>
+
+</div><!-- /page -->
+
+</body>
+</html>
