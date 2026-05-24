@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Strategic Subledger — Rules Engine · Lauryn Goodlett</title>
+<title>Strategic Subledger · Rules Engine · Lauryn Goodlett</title>
 <style>
 @font-face{font-family:'General Sans';src:url('GeneralSans-Light.otf') format('opentype');font-weight:300;font-style:normal}
 @font-face{font-family:'General Sans';src:url('GeneralSans-Regular.otf') format('opentype');font-weight:400;font-style:normal}
@@ -11,6 +11,26 @@
 @font-face{font-family:'General Sans';src:url('GeneralSans-Medium.otf') format('opentype');font-weight:500;font-style:normal}
 @font-face{font-family:'General Sans';src:url('GeneralSans-Semibold.otf') format('opentype');font-weight:600;font-style:normal}
 @font-face{font-family:'General Sans';src:url('GeneralSans-Bold.otf') format('opentype');font-weight:700;font-style:normal}
+
+/* ── ANNOTATED SCREENS ── */
+.annotated-wrap{display:flex;gap:0;align-items:flex-start;justify-content:center;margin:0 -70px;position:relative}
+.annotated-screen{width:560px;flex-shrink:0}
+.screen-frame{border-radius:12px;overflow:hidden;border:1px solid var(--line);box-shadow:0 4px 24px rgba(29,31,33,.08)}
+.screen-frame-bar{background:#ECECE8;border-bottom:1px solid var(--line);padding:9px 14px;display:flex;align-items:center;gap:6px}
+.fdot{width:9px;height:9px;border-radius:50%;background:#CFCFC9;display:inline-block}
+.furl{margin-left:10px;font-family:'General Sans',sans-serif;font-size:11px;font-weight:500;color:var(--ink-4)}
+.annotated-panel{flex:1;min-width:0;position:relative;align-self:stretch;margin-left:8px}
+.ann-callout{position:absolute;left:0;right:0;display:flex;align-items:flex-start;gap:0}
+.ann-line{height:1px;width:24px;background:var(--ink-4);flex-shrink:0;margin-top:10px}
+.ann-box{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:9px 12px;font-size:11.5px;font-weight:500;color:var(--ink-3);line-height:1.5;flex:1;box-shadow:0 1px 4px rgba(29,31,33,.04)}
+.ann-box strong{display:block;font-weight:600;color:var(--ink);margin-bottom:3px;font-size:11.5px}
+@media(max-width:920px){
+  .annotated-wrap{margin:0;flex-direction:column;align-items:stretch}
+  .annotated-screen{width:100%}
+  .annotated-panel{margin-left:0;margin-top:16px;display:flex;flex-direction:column;gap:10px}
+  .ann-callout{position:static!important;margin-bottom:0}
+  .ann-line{display:none}
+}
 </style>
 <style>
 :root{
@@ -45,7 +65,7 @@ body{background:var(--bg);font-family:'General Sans',sans-serif;font-weight:500;
 .hero-tag{font-family:'General Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:20px;background:var(--surface);border:1px solid var(--line-2);color:var(--ink-3)}
 .hero-tag.accent{background:var(--accent-soft);color:var(--accent);border-color:transparent}
 .hero-title{font-family:'General Sans',sans-serif;font-weight:600;font-size:48px;line-height:1.1;color:var(--ink);margin-bottom:20px;letter-spacing:-0.02em}
-.hero-title em{font-style:italic;font-weight:300;color:var(--ink-3)}
+.hero-title em{font-style:italic;font-weight:500;color:var(--ink-2)}
 .hero-sub{font-size:18px;color:var(--ink-3);line-height:1.65;max-width:600px;margin-bottom:36px}
 .hero-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);padding-top:24px}
 .meta-item{padding-right:24px;border-right:1px solid var(--line)}
@@ -147,6 +167,8 @@ body{background:var(--bg);font-family:'General Sans',sans-serif;font-weight:500;
 *:focus{outline:none}
 *:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
 a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+
+/* ── ANNOTATED SCREENS ── */
 </style>
 </head>
 <body>
@@ -155,14 +177,19 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
 
   <!-- Hero -->
   <header class="hero">
-    <div class="hero-eyebrow">
-      <span class="hero-tag accent">Flagship project</span>
-      <span class="hero-tag">Enterprise SaaS</span>
-      <span class="hero-tag">Workflow Design</span>
-      <span class="hero-tag">Systems Thinking</span>
+    <div style="display:inline-flex;align-items:center;gap:7px;font-family:'General Sans',sans-serif;font-size:11px;font-weight:500;color:var(--ink-4);background:var(--surface);border:1px solid var(--line);padding:6px 12px;border-radius:20px;margin-bottom:20px">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      Details have been generalized and data anonymized to protect client confidentiality.
     </div>
-    <h1 class="hero-title">Redesigning a fragmented<br><em>accounting controls workflow</em></h1>
-    <p class="hero-sub">An 8-stage, cross-functional workflow spanning Jira, spreadsheets, and institutional memory — rebuilt as a scalable operational platform.</p>
+    <div class="hero-eyebrow" style="display:flex;align-items:center;gap:0;flex-wrap:wrap">
+<span style="font-family:'General Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4)">Enterprise SaaS</span>
+      <span style="font-size:13px;font-weight:700;color:var(--ink-4);margin:0 10px">·</span>
+      <span style="font-family:'General Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4)">Workflow Design</span>
+      <span style="font-size:13px;font-weight:700;color:var(--ink-4);margin:0 10px">·</span>
+      <span style="font-family:'General Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4)">Systems Thinking</span>
+    </div>
+    <h1 class="hero-title">Rebuilding an accounting controls workflow<br><em>built on spreadsheets, Jira threads, and institutional knowledge</em></h1>
+    <p class="hero-sub">The analysts responsible for managing financial rules were switching between spreadsheets, Jira, Teams, and email just to do their jobs. The goal was to understand why, and design something better.</p>
     <div class="hero-meta">
       <div class="meta-item">
         <div class="meta-label">Role</div>
@@ -170,7 +197,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
       </div>
       <div class="meta-item">
         <div class="meta-label">Timeline</div>
-        <div class="meta-value">Sept 2024 – April 2025</div>
+        <div class="meta-value">August 2025 – April 2026</div>
       </div>
       <div class="meta-item">
         <div class="meta-label">Collaborators</div>
@@ -183,23 +210,61 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
     </div>
   </header>
 
+  <!-- Impact summary strip -->
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:0">
+    <div style="padding:20px 0;border-right:1px solid var(--line)">
+      <div style="font-family:'General Sans',sans-serif;font-size:26px;font-weight:700;color:var(--ink);letter-spacing:-0.03em;margin-bottom:4px">10+ hrs</div>
+      <div style="font-size:13px;font-weight:500;color:var(--ink-3);line-height:1.4">a month of clarification back-and-forth eliminated</div>
+    </div>
+    <div style="padding:20px 24px;border-right:1px solid var(--line)">
+      <div style="font-family:'General Sans',sans-serif;font-size:26px;font-weight:700;color:var(--ink);letter-spacing:-0.03em;margin-bottom:4px">5 → 1</div>
+      <div style="font-size:13px;font-weight:500;color:var(--ink-3);line-height:1.4">steps to send a change for business validation</div>
+    </div>
+    <div style="padding:20px 0 20px 24px">
+      <div style="font-family:'General Sans',sans-serif;font-size:26px;font-weight:700;color:var(--ink);letter-spacing:-0.03em;margin-bottom:4px">8 stages</div>
+      <div style="font-size:13px;font-weight:500;color:var(--ink-3);line-height:1.4">of a fragmented workflow unified into one system</div>
+    </div>
+  </div>
+
   <!-- Problem -->
   <section class="section" aria-labelledby="problem-heading">
     <div class="label section-label">The problem</div>
-    <h2 class="section-heading" id="problem-heading">A high-stakes workflow running on tribal knowledge</h2>
-    <p class="body-text">The Accounting Controls Group (ACG) manages the financial rules that determine how every transaction maps to a general ledger output. When a rule needs to change — a new product, a regulatory update, a business restructure — a request enters their queue. ACG reviews it, builds the change, gets it approved, and deploys it.</p>
-    <p class="body-text">In practice, none of that happened in one place. Requests arrived through Jira, almost always incomplete. Clarification threads stretched across comments and messages. Rule logic was built manually with no shared reference. Approvals were tracked informally. The knowledge of how to do any of it correctly lived in specific people — not the system.</p>
-    <div class="callout">
-      <p>"The back-and-forth is the work. We're not slow — we're blocked before we even start."</p>
+    <h2 class="section-heading" id="problem-heading">A critical workflow held together by too many tools</h2>
+    <p class="body-text">The Accounting Controls Group (ACG) manages the financial rules that determine how transactions map to general ledger outputs. When something needs to change, a request comes in and ACG has to review it, build the rule change, get it approved, and deploy it.</p>
+    <p class="body-text">In reality, that process was spread across Jira, spreadsheets, Teams, email, and phone calls. Requests came in incomplete. Clarification loops between analysts and the business teams who submitted requests got buried in Jira comments. A lot of the process knowledge lived with specific people on the team rather than in any shared system or documentation.</p>
+    <div style="background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin:24px 0">
+      <p style="font-family:'General Sans',sans-serif;font-size:15px;font-weight:500;color:var(--ink-2);line-height:1.6;margin-bottom:16px">"The back-and-forth is what takes the longest. At least 10 hours a month just clarifying requests before any actual rule work can start."</p>
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="width:32px;height:32px;border-radius:50%;background:var(--line);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--ink-3);flex-shrink:0">A</div>
+        <div>
+          <div style="font-size:13px;font-weight:600;color:var(--ink-2)">ACG Analyst</div>
+          <div style="font-size:12px;font-weight:500;color:var(--ink-4)">User interview, March 2026</div>
+        </div>
+      </div>
     </div>
-    <p class="body-text">The first six months were spent mapping this reality through stakeholder workshops and secondary research, without direct user access. When user research began in January 2025, it pressure-tested those assumptions against actual ACG workflows — and reshaped the design direction in the process.</p>
+    <p class="body-text">We started at the end of August 2025 but didn't get access to users until mid-January 2026. For that first stretch, the design work was exploratory, based on what the tech team could tell us about the workflow. Once interviews began, being able to observe how analysts actually worked was invaluable. Several assumptions shifted significantly based on what we heard.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px">
+      <div style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px">
+        <div style="font-family:'General Sans',sans-serif;font-size:28px;font-weight:700;color:var(--ink);letter-spacing:-0.03em;margin-bottom:4px">5 tools</div>
+        <div style="font-size:13px;font-weight:500;color:var(--ink-3);line-height:1.5">Jira, spreadsheets, Teams, email, and phone, juggled to complete a single request</div>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px">
+        <div style="font-family:'General Sans',sans-serif;font-size:28px;font-weight:700;color:var(--ink);letter-spacing:-0.03em;margin-bottom:4px">12–15</div>
+        <div style="font-size:13px;font-weight:500;color:var(--ink-3);line-height:1.5">requests a month, each needing multiple rounds of clarification before work could start</div>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px">
+        <div style="font-family:'General Sans',sans-serif;font-size:28px;font-weight:700;color:var(--ink);letter-spacing:-0.03em;margin-bottom:4px">310</div>
+        <div style="font-size:13px;font-weight:500;color:var(--ink-3);line-height:1.5">rule matrices holding 22,000+ individual lines, managed entirely in spreadsheets</div>
+      </div>
+    </div>
   </section>
 
   <!-- Why hard -->
   <section class="section" aria-labelledby="complexity-heading">
     <div class="label section-label">Why this was uniquely complex</div>
-    <h2 class="section-heading" id="complexity-heading">This wasn't a form redesign</h2>
-    <p class="body-text">Enterprise workflow problems often look simple from the outside. This one had compounding constraints that made surface-level solutions fail immediately.</p>
+    <h2 class="section-heading" id="complexity-heading">Why the workflow couldn't be solved with a UI refresh</h2>
+    <p class="body-text">A few things made this harder than a typical workflow redesign.</p>
     <div class="complexity-grid">
       <div class="complexity-item">
         <span class="complexity-num">01</span>
@@ -207,23 +272,23 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
       </div>
       <div class="complexity-item">
         <span class="complexity-num">02</span>
-        <span class="complexity-text">High governance sensitivity — rules directly impact financial outputs and audit trails</span>
+        <span class="complexity-text">High governance sensitivity, since rules directly impact financial outputs and audit trails</span>
       </div>
       <div class="complexity-item">
         <span class="complexity-num">03</span>
-        <span class="complexity-text">Tribal knowledge risk — critical logic lived in people, not documentation</span>
+        <span class="complexity-text">A lot of process knowledge lived with specific people on the team rather than in shared documentation or tooling</span>
       </div>
       <div class="complexity-item">
         <span class="complexity-num">04</span>
-        <span class="complexity-text">Business users not yet in the platform — design had to bridge two worlds simultaneously</span>
+        <span class="complexity-text">The business had no visibility into what rules already existed, making it hard to know if a requested rule was new, already active, or just sitting dormant in a spreadsheet</span>
       </div>
       <div class="complexity-item">
         <span class="complexity-num">05</span>
-        <span class="complexity-text">Development building screen-by-screen without a shared workflow model</span>
+        <span class="complexity-text">No access to users for the first five months, so early design decisions had to be based on what the tech team described rather than observed behavior</span>
       </div>
       <div class="complexity-item">
         <span class="complexity-num">06</span>
-        <span class="complexity-text">No user access in Phase 1 — design had to be grounded in stakeholder synthesis, then validated</span>
+        <span class="complexity-text">Changes were made directly in production with no test environment, so accuracy and confidence before sign-off mattered enormously</span>
       </div>
     </div>
   </section>
@@ -231,12 +296,12 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
   <!-- Workflow -->
   <section class="section" aria-labelledby="workflow-heading">
     <div class="label section-label">The system</div>
-    <h2 class="section-heading" id="workflow-heading">Map the workflow before designing the screens</h2>
-    <p class="body-text">Before a single screen was designed, the end-to-end workflow had to be documented. Development had been building components in isolation — technically correct but disconnected from the flow around them. Business stakeholders kept rejecting builds not because the screens were wrong, but because no one had mapped how they connected.</p>
-    <p class="body-text">The workflow map became the most consequential design artifact on the project — not a UI component, but a shared model that reoriented the team around user goals rather than ticket completion.</p>
+    <h2 class="section-heading" id="workflow-heading">Understanding the current state before making any design decisions</h2>
+    <p class="body-text">Documenting the end-to-end workflow was a core part of the research phase. Neither design nor the broader team came in with deep domain knowledge, so understanding how the process actually worked across all stages was necessary before identifying where the real gaps were.</p>
+    <p class="body-text">It also gave stakeholders a clearer picture of where friction was happening and where requests were getting stuck. Seeing the full workflow laid out made it easier to have conversations about sequencing, ownership, and where the process was breaking down.</p>
 
     <div class="flow-wrap">
-      <div class="flow-title">8-stage workflow · 3 actor groups</div>
+      <div class="flow-title">8-stage workflow across business teams, ACG analysts, and governance</div>
       <div class="swimlane">
         <div class="lane-row">
           <div class="lane-label">Business</div>
@@ -295,13 +360,13 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
   <div class="page">
     <section class="section" aria-labelledby="design-heading">
       <div class="label section-label">The design</div>
-      <h2 class="section-heading" id="design-heading">Request details — a workspace, not a page</h2>
-      <p class="screens-intro">The request details surface is the core of the ACG workflow — where they verify, classify, build, and ultimately approve rule changes. Rather than a static detail view, it was designed as a dynamic workspace that responds to where the request is in the workflow.</p>
+      <h2 class="section-heading" id="design-heading">Designing the request details page</h2>
+      <p class="screens-intro">The request details page needed to support active decision-making at every stage, not just display information. Because the workflow has distinct phases, and different actions are available at each one, the page adapts based on where the request is and what still needs to happen.</p>
       <div style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 22px;margin:0 0 28px;display:flex;gap:16px;align-items:flex-start">
         <div style="font-family:'General Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);margin-top:2px;flex-shrink:0">Role context</div>
-        <div style="font-size:14px;color:var(--ink-3);line-height:1.65">This view belongs to an ACG team member who can update rules and act on requests assigned to them — but cannot reassign requests or access other teams' work. The locked and unlocked states aren't just workflow sequencing. They reflect what this user is permitted to do at this stage. Permissions are enforced by the system, not by convention.</div>
+        <div style="font-size:14px;color:var(--ink-3);line-height:1.65">This view belongs to an ACG team member who can update rules and act on requests assigned to them, but can't reassign requests or access other teams' work. The locked and unlocked states reflect both workflow sequencing and user permissions. What's available changes based on role and where the request is in the process.</div>
       </div>
-      <p class="screens-intro" style="margin-top:0">Two states tell the full story.</p>
+      <p class="screens-intro" style="margin-top:0">Two states show how the experience changes across the workflow.</p>
 
       <!-- Screen 1 -->
       <div class="screen-block">
@@ -316,28 +381,29 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
             View full screen
           </a>
         </div>
-        <div class="screen-preview">
-          <div class="screen-preview-bar" aria-hidden="true">
-            <div class="browser-dot"></div>
-            <div class="browser-dot"></div>
-            <div class="browser-dot"></div>
-            <div class="browser-url">subledger / requests / RQ-001</div>
+        <div class="annotated-wrap">
+          <div class="annotated-screen">
+            <div class="screen-frame">
+              <div class="screen-frame-bar" aria-hidden="true">
+                <span class="fdot"></span><span class="fdot"></span><span class="fdot"></span>
+                <span class="furl">subledger / requests / RQ-001</span>
+              </div>
+              <img src="screen_incoming.png" alt="Incoming state of the request details screen showing the status banner and rule classification" style="width:100%;display:block" />
+            </div>
           </div>
-          <iframe src="request_detail_incoming.html" title="Incoming request detail screen — ACG workflow" loading="lazy"></iframe>
-          <div class="screen-preview-fade" aria-hidden="true"></div>
-        </div>
-        <div class="screen-annotations" aria-label="Design decisions for incoming request screen">
-          <div class="ann">
-            <div class="ann-num" aria-hidden="true">1</div>
-            <div class="ann-text"><strong>Status banner as instruction, not just information.</strong> Rather than showing a status label, the banner tells ACG exactly what to do next in plain language. This replaces the mental model ACG had to maintain across multiple tools.</div>
-          </div>
-          <div class="ann">
-            <div class="ann-num" aria-hidden="true">2</div>
-            <div class="ann-text"><strong>Classification as the first ACG action.</strong> ACG links the request to an existing rule and flags it for a clone — live rules are never edited directly. The cloned version carries the proposed changes and requires an effective date before it can replace the original. This is the "Decision" stage made explicit in the UI.</div>
-          </div>
-          <div class="ann">
-            <div class="ann-num" aria-hidden="true">3</div>
-            <div class="ann-text"><strong>Downstream sections locked until classification is complete.</strong> Output preview and approval/deployment steps are unavailable — not hidden, just clearly locked. ACG understands the sequence without needing documentation to explain it.</div>
+          <div class="annotated-panel" aria-label="Design decisions for incoming request screen">
+            <div class="ann-callout" style="top:128px">
+              <div class="ann-line"></div>
+              <div class="ann-box"><strong>Status banner as instruction</strong>Tells ACG exactly what to do next in plain language instead of showing a status label. Replaces the tracking analysts were doing across Jira and side conversations.</div>
+            </div>
+            <div class="ann-callout" style="top:572px">
+              <div class="ann-line"></div>
+              <div class="ann-box"><strong>Classification as the first action</strong>ACG links the request to an existing rule and initiates a cloned draft version for editing. Active logic is never touched directly. The decision point is now visible in the UI.</div>
+            </div>
+            <div class="ann-callout" style="top:720px">
+              <div class="ann-line"></div>
+              <div class="ann-box"><strong>Downstream locked until classified</strong>Output preview and deployment stay unavailable until classification is complete. The sequence is enforced by the interface, not documentation.</div>
+            </div>
           </div>
         </div>
       </div>
@@ -355,32 +421,29 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
             View full screen
           </a>
         </div>
-        <div class="screen-preview">
-          <div class="screen-preview-bar" aria-hidden="true">
-            <div class="browser-dot"></div>
-            <div class="browser-dot"></div>
-            <div class="browser-dot"></div>
-            <div class="browser-url">subledger / requests / RQ-001</div>
+        <div class="annotated-wrap">
+          <div class="annotated-screen">
+            <div class="screen-frame">
+              <div class="screen-frame-bar" aria-hidden="true">
+                <span class="fdot"></span><span class="fdot"></span><span class="fdot"></span>
+                <span class="furl">subledger / requests / RQ-001</span>
+              </div>
+              <img src="screen_approval.png" alt="Approval state of the request details screen showing the rule impact diff and approval handoff" style="width:100%;display:block" />
+            </div>
           </div>
-          <iframe src="request_detail_sanitized.html" title="Approval state request detail screen — ACG workflow" loading="lazy"></iframe>
-          <div class="screen-preview-fade" aria-hidden="true"></div>
-        </div>
-        <div class="screen-annotations" aria-label="Design decisions for approval state screen">
-          <div class="ann">
-            <div class="ann-num" aria-hidden="true">4</div>
-            <div class="ann-text"><strong>Diff view for rule impact.</strong> When a request modifies an existing rule, ACG needs to see exactly what's changing — not just the proposed state. The side-by-side comparison is what enables confident approval rather than speculative approval.</div>
-          </div>
-          <div class="ann">
-            <div class="ann-num" aria-hidden="true">5</div>
-            <div class="ann-text"><strong>Output preview before sending.</strong> ACG can see the final GL impact — accounts affected, estimated transaction volume — before the requester ever sees it. Confidence before sign-off, not after.</div>
-          </div>
-          <div class="ann">
-            <div class="ann-num" aria-hidden="true">6</div>
-            <div class="ann-text"><strong>The Jira sync note is intentional architecture.</strong> Business users aren't yet in the platform — comments sync back to Jira so the requester stays in the loop without needing access. This bridge is a designed decision, not a workaround. The validation surface, the handoff sequence, the rule diff — it's all built for business users to step into directly when the time comes.</div>
-          </div>
-          <div class="ann">
-            <div class="ann-num" aria-hidden="true">7</div>
-            <div class="ann-text"><strong>Deploy locked until business approves.</strong> The two-step handoff — send for approval, then deploy — enforces the governance sequence by design. ACG can't skip a step. The system makes compliance the path of least resistance.</div>
+          <div class="annotated-panel" aria-label="Design decisions for approval state screen">
+            <div class="ann-callout" style="top:128px">
+              <div class="ann-line"></div>
+              <div class="ann-box"><strong>Execution complete</strong>The banner updates to reflect work done. ACG knows exactly where the request is and what to do next without checking another tool.</div>
+            </div>
+            <div class="ann-callout" style="top:640px">
+              <div class="ann-line"></div>
+              <div class="ann-box"><strong>Diff view for rule impact</strong>ACG sees exactly which fields changed, not just the proposed state. The side-by-side comparison is what makes confident approval possible instead of guesswork.</div>
+            </div>
+            <div class="ann-callout" style="top:1040px">
+              <div class="ann-line"></div>
+              <div class="ann-box"><strong>Gated deployment</strong>Deploy stays locked until the requester confirms over email. The governance sequence is enforced by the system, not by convention.</div>
+            </div>
           </div>
         </div>
       </div>
@@ -399,22 +462,22 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
       <div class="decision">
         <div class="decision-num" aria-hidden="true">01</div>
         <div class="decision-content">
-          <div class="decision-title">In-platform actions drive workflow state — not manual status updates</div>
-          <div class="decision-text">Each stage advances because someone completed a real piece of work. Classifying a request to a rule completes Verification. Saving the cloned rule change completes Execution. No one drags a status card. Live rules are never edited directly — ACG always works on a clone with a defined effective date, so the original stays active until the replacement is ready to deploy. The activity feed is the audit trail that makes this visible.</div>
+          <div class="decision-title">Workflow state tied to actions within the system</div>
+          <div class="decision-text">Each stage advances because someone completed actual work. Classifying a request moves it forward, saving the rule change moves it to the next stage. Status changes happen as part of the work rather than as a separate manual update. ACG typically worked from cloned versions of rules with effective dates so active rules stayed stable until deployment. The activity feed captures what happened and when, which matters for audit traceability.</div>
         </div>
       </div>
       <div class="decision">
         <div class="decision-num" aria-hidden="true">02</div>
         <div class="decision-content">
-          <div class="decision-title">Workflow-first, not screen-first</div>
-          <div class="decision-text">The most impactful design work wasn't a component or a layout — it was documenting the eight-stage workflow and getting engineering and stakeholders aligned on it before building continued. Dev had been producing technically correct screens in the wrong sequence. Business kept rejecting them. The workflow map gave the team a shared model to build against and reframed UX as the function that maintained the end-to-end view.</div>
+          <div class="decision-title">Aligning the workflow before scaling the interface</div>
+          <div class="decision-text">The workflow spanned eight stages across multiple teams, and without a shared picture of how it connected end-to-end, it was difficult to make design decisions that held up across the full process. Documenting it gave everyone a common reference point, which made sequencing, ownership, and cross-team decision-making significantly easier.</div>
         </div>
       </div>
       <div class="decision">
         <div class="decision-num" aria-hidden="true">03</div>
         <div class="decision-content">
           <div class="decision-title">Designed for a two-sided platform, built for one side first</div>
-          <div class="decision-text">Business users aren't in the platform yet — they receive a structured email summary to validate before deployment. The design explicitly acknowledges this in the activity feed rather than hiding it. The architecture is already built for them to enter the platform when the time comes. The validation surface, the handoff sequence, the visibility into rule changes — it's all there. The bridge is temporary. The destination is designed.</div>
+          <div class="decision-text">Business users were still working out of Jira at the time, so the design had to fit that reality. For now, the requester confirms the change over email with a structured summary of the rule diff and its impact. But the platform is already built to bring them in directly later. The approval steps and rule visibility they would need are designed in, so the workflow doesn't have to be rebuilt when they move into the system.</div>
         </div>
       </div>
     </div>
@@ -423,28 +486,28 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
   <!-- Outcomes -->
   <section class="section" aria-labelledby="outcomes-heading">
     <div class="label section-label">What shifted</div>
-    <h2 class="section-heading" id="outcomes-heading">From screen delivery to workflow alignment</h2>
-    <p class="body-text">The measurable outcomes of this project aren't in analytics — they're in how the team thinks and works. Those are often the harder changes to make in an enterprise environment.</p>
+    <h2 class="section-heading" id="outcomes-heading">Where the efficiency gains actually come from</h2>
+    <p class="body-text">The efficiency gains here are concrete. Two specific parts of the workflow change significantly.</p>
     <div class="outcomes-grid">
       <div class="outcome">
-        <div class="outcome-label">Team alignment</div>
-        <div class="outcome-text">Dev shifted from screen-by-screen to workflow-first after the journey documentation was introduced. Business rejection rate on builds dropped significantly.</div>
+        <div class="outcome-label">Intake validation</div>
+        <div class="outcome-text">Requiring complete submissions before a request enters the system eliminates the clarification loop entirely. Based on what Andrew described, that's 10+ hours a month per analyst that was previously spent chasing missing fields across Jira.</div>
       </div>
       <div class="outcome">
-        <div class="outcome-label">Design governance</div>
-        <div class="outcome-text">UX established as a formal sign-off gate in the development process — documented in Jira story requirements, not just assumed.</div>
+        <div class="outcome-label">Business validation</div>
+        <div class="outcome-text">"Send for approval" replaces a manual 5-step process : taking a screenshot, finding the Jira ticket, attaching it, writing up what changed, and waiting for a response. One action sends a structured email with the rule diff, evidence, and impact preview already in it.</div>
       </div>
       <div class="outcome">
-        <div class="outcome-label">Research foundation</div>
-        <div class="outcome-text">5 user interviews reoriented the design from stakeholder assumptions to actual ACG workflows, surfacing gaps that hadn't been documented anywhere in the organisation.</div>
+        <div class="outcome-label">Audit trail</div>
+        <div class="outcome-text">Change history, approvals, and communication move from scattered Jira comments and email threads into the platform. If someone asks who approved a change and when, the answer is in one place, not a search through old tickets.</div>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="cs-footer">
-    <span class="footer-name">Lauryn Goodlett · Portfolio 2025</span>
-    <a href="/" class="footer-back">
+    <span class="footer-name">Lauryn Goodlett · Portfolio 2026</span>
+    <a href="https://lauryngoodlett.com/work" class="footer-back">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
       Back to work
     </a>
@@ -452,5 +515,51 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
 
 </div><!-- /page -->
 
+<script>
+(function(){
+  var correct = 'goodlettportfolio25';
+  var stored = sessionStorage.getItem('cs_auth');
+  if(stored === correct) return;
+  
+  var overlay = document.createElement('div');
+  overlay.id = 'pw-gate';
+  overlay.style.cssText = 'position:fixed;inset:0;background:#FAF9F6;display:flex;align-items:center;justify-content:center;z-index:9999;font-family:"General Sans",sans-serif';
+  
+  overlay.innerHTML = `
+    <div style="max-width:360px;width:100%;padding:0 24px;text-align:center">
+      <div style="width:40px;height:40px;border-radius:10px;background:#1D1F21;display:flex;align-items:center;justify-content:center;margin:0 auto 20px">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FAF9F6" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </div>
+      <div style="font-size:20px;font-weight:600;color:#1D1F21;margin-bottom:6px;letter-spacing:-0.02em">Protected case study</div>
+      <div style="font-size:14px;font-weight:500;color:#6B6D6F;margin-bottom:24px;line-height:1.5">Enter the password to view this work.</div>
+      <input id="pw-input" type="password" placeholder="Password" style="width:100%;padding:12px 16px;font-size:14px;font-family:inherit;font-weight:500;border:1px solid #E8E8E4;border-radius:8px;background:#fff;color:#1D1F21;outline:none;margin-bottom:10px;box-sizing:border-box" />
+      <div id="pw-error" style="font-size:12px;color:#9B3030;margin-bottom:10px;display:none;font-weight:500">Incorrect password. Try again.</div>
+      <button id="pw-btn" style="width:100%;padding:12px;font-size:14px;font-weight:600;font-family:inherit;background:#1D1F21;color:#FAF9F6;border:none;border-radius:8px;cursor:pointer;letter-spacing:-0.01em">View case study</button>
+      <div style="margin-top:16px;font-size:12px;font-weight:500;color:#9E9E99">Lauryn Goodlett · Portfolio 2026</div>
+    </div>
+  `;
+  
+  document.body.appendChild(overlay);
+  document.body.style.overflow = 'hidden';
+  
+  function attempt(){
+    var val = document.getElementById('pw-input').value;
+    if(val === correct){
+      sessionStorage.setItem('cs_auth', correct);
+      overlay.remove();
+      document.body.style.overflow = '';
+    } else {
+      document.getElementById('pw-error').style.display = 'block';
+      document.getElementById('pw-input').value = '';
+      document.getElementById('pw-input').focus();
+    }
+  }
+  
+  document.getElementById('pw-btn').addEventListener('click', attempt);
+  document.getElementById('pw-input').addEventListener('keydown', function(e){
+    if(e.key === 'Enter') attempt();
+  });
+})();
+</script>
 </body>
 </html>
