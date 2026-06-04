@@ -145,7 +145,8 @@ body{background:var(--bg);font-family:'General Sans',sans-serif;font-weight:500;
 
 /* ── OUTCOMES ── */
 .outcomes-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:28px}
-.outcome{padding:20px;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+.outcome{padding:24px;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+.outcome-icon{font-size:24px;color:var(--ink-4);margin-bottom:14px;display:block;line-height:1}
 .outcome-label{font-family:'General Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);margin-bottom:8px}
 .outcome-text{font-size:14px;font-weight:500;color:var(--ink-2);line-height:1.55}
 
@@ -171,6 +172,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
 
 /* ── ANNOTATED SCREENS ── */
 </style>
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
 </head>
 <body>
 
@@ -491,14 +493,17 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
     <p class="body-text">Not every part of the workflow changed. These three did, in specific, measurable ways.</p>
     <div class="outcomes-grid">
       <div class="outcome">
+        <i class="ph ph-clipboard-check outcome-icon"></i>
         <div class="outcome-label">Intake validation</div>
         <div class="outcome-text">Complete submissions required before a request enters the system. Analysts described spending 10+ hours a month chasing missing fields — that loop doesn't exist if the system won't accept an incomplete request.</div>
       </div>
       <div class="outcome">
+        <i class="ph ph-paper-plane-tilt outcome-icon"></i>
         <div class="outcome-label">Business validation</div>
         <div class="outcome-text">One action replaces five manual steps. The structured summary — rule diff, evidence, and impact estimate — goes out automatically. Nothing to assemble.</div>
       </div>
       <div class="outcome">
+        <i class="ph ph-clock-counter-clockwise outcome-icon"></i>
         <div class="outcome-label">Audit trail</div>
         <div class="outcome-text">Approvals and change history move into the platform. Who approved what and when is one click, not a Jira search.</div>
       </div>
