@@ -189,8 +189,8 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
       <span style="font-size:13px;font-weight:700;color:var(--ink-4);margin:0 10px">·</span>
       <span style="font-family:'General Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4)">Systems Thinking</span>
     </div>
-    <h1 class="hero-title">Replacing 5 disconnected tools<br><em>with one workflow for finance operations</em></h1>
-    <p class="hero-sub">Finance operations teams were managing accounting rules across Jira, spreadsheets, Teams, email, and phone calls. The work needed a system of its own.</p>
+    <h1 class="hero-title">Designing a rules management platform<br><em>for finance operations — from 5 tools to one</em></h1>
+    <p class="hero-sub">Finance operations teams were managing accounting rules across Jira, spreadsheets, Teams, email, and phone calls. No tool existed for what they actually did.</p>
     <div class="hero-meta">
       <div class="meta-item">
         <div class="meta-label">Role</div>
@@ -545,7 +545,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
   document.body.style.overflow = 'hidden';
   
   function attempt(){
-    var val = document.getElementById('pw-input').value;
+    var val = document.getElementById('pw-input').value.trim();
     if(val === correct){
       sessionStorage.setItem('cs_auth', correct);
       overlay.remove();
