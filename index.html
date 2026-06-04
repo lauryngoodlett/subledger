@@ -19,15 +19,15 @@
 .screen-frame-bar{background:#ECECE8;border-bottom:1px solid var(--line);padding:9px 14px;display:flex;align-items:center;gap:6px}
 .fdot{width:9px;height:9px;border-radius:50%;background:#CFCFC9;display:inline-block}
 .furl{margin-left:10px;font-family:'General Sans',sans-serif;font-size:11px;font-weight:500;color:var(--ink-4)}
-.annotated-panel{flex:1;min-width:0;position:relative;align-self:stretch;margin-left:8px}
+.annotated-panel{width:260px;flex-shrink:0;position:relative;align-self:stretch;margin-left:8px}
 .ann-callout{position:absolute;left:0;right:0;display:flex;align-items:flex-start;gap:0}
 .ann-line{height:1px;width:24px;background:var(--ink-4);flex-shrink:0;margin-top:10px}
 .ann-box{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:9px 12px;font-size:11.5px;font-weight:500;color:var(--ink-3);line-height:1.5;flex:1;box-shadow:0 1px 4px rgba(29,31,33,.04)}
 .ann-box strong{display:block;font-weight:600;color:var(--ink);margin-bottom:3px;font-size:11.5px}
-@media(max-width:920px){
+@media(max-width:980px){
   .annotated-wrap{margin:0;flex-direction:column;align-items:stretch}
   .annotated-screen{width:100%}
-  .annotated-panel{margin-left:0;margin-top:16px;display:flex;flex-direction:column;gap:10px}
+  .annotated-panel{width:100%;margin-left:0;margin-top:16px;display:flex;flex-direction:column;gap:10px}
   .ann-callout{position:static!important;margin-bottom:0}
   .ann-line{display:none}
 }
@@ -388,7 +388,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
                 <span class="fdot"></span><span class="fdot"></span><span class="fdot"></span>
                 <span class="furl">subledger / requests / RQ-001</span>
               </div>
-              <img src="screen_incoming.png" alt="Incoming state of the request details screen showing the status banner and rule classification" style="width:100%;display:block" />
+              <img src="https://lauryngoodlett.github.io/subledger/screen_incoming.png" alt="Incoming state of the request details screen showing the status banner and rule classification" style="width:100%;display:block" />
             </div>
           </div>
           <div class="annotated-panel" aria-label="Design decisions for incoming request screen">
@@ -428,7 +428,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
                 <span class="fdot"></span><span class="fdot"></span><span class="fdot"></span>
                 <span class="furl">subledger / requests / RQ-001</span>
               </div>
-              <img src="screen_approval.png" alt="Approval state of the request details screen showing the rule impact diff and approval handoff" style="width:100%;display:block" />
+              <img src="https://lauryngoodlett.github.io/subledger/screen_approval.png" alt="Approval state of the request details screen showing the rule impact diff and approval handoff" style="width:100%;display:block" />
             </div>
           </div>
           <div class="annotated-panel" aria-label="Design decisions for approval state screen">
@@ -440,7 +440,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
               <div class="ann-line"></div>
               <div class="ann-box"><strong>Diff view for rule impact</strong>ACG sees exactly which fields changed, not just the proposed state. The side-by-side comparison is what makes confident approval possible instead of guesswork.</div>
             </div>
-            <div class="ann-callout" style="top:1040px">
+            <div class="ann-callout" style="top:660px">
               <div class="ann-line"></div>
               <div class="ann-box"><strong>Gated deployment</strong>Deploy stays locked until the requester confirms over email. The governance sequence is enforced by the system, not by convention.</div>
             </div>
