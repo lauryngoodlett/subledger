@@ -67,11 +67,12 @@ body{background:var(--bg);font-family:'General Sans',sans-serif;font-weight:500;
 .hero-title{font-family:'General Sans',sans-serif;font-weight:600;font-size:48px;line-height:1.1;color:var(--ink);margin-bottom:20px;letter-spacing:-0.02em}
 .hero-title em{font-style:italic;font-weight:500;color:var(--ink-2)}
 .hero-sub{font-size:18px;color:var(--ink-3);line-height:1.65;max-width:600px;margin-bottom:36px}
-.hero-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);padding-top:24px}
-.meta-item{padding-right:24px;border-right:1px solid var(--line)}
-.meta-item:last-child{border-right:none}
-.meta-label{font-family:'General Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);margin-bottom:5px}
-.meta-value{font-size:13px;color:var(--ink-2);font-weight:500;line-height:1.4}
+.hero-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);padding-top:32px;margin-top:8px}
+.meta-item{padding:0 32px 0 0}
+.meta-item:not(:last-child){border-right:1px solid var(--line);margin-right:32px}
+.meta-item:last-child{padding-right:0}
+.meta-label{font-family:'General Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-4);margin-bottom:10px}
+.meta-value{font-size:15px;color:var(--ink);font-weight:500;line-height:1.5}
 
 /* ── SECTION ── */
 .section{padding:56px 0}
