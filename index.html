@@ -14,10 +14,26 @@
 @font-face{font-family:'PlantMama';src:url('PlantMama.otf') format('opentype'),url('PlantMama.ttf') format('truetype');font-weight:normal;font-style:normal}
 
 /* ── DESIGNER COMMENTARY ── */
-.commentary{display:flex;gap:14px;align-items:flex-start;background:#F4F3EF;border-left:3px solid var(--ink-4);border-radius:0 8px 8px 0;padding:16px 18px;margin:24px 0}
-.commentary-icon{font-size:18px;color:var(--ink-3);flex-shrink:0;margin-top:3px}
-.commentary-label{font-family:'General Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);margin-bottom:6px}
-.commentary-text{font-family:'PlantMama',Georgia,serif;font-size:15px;color:var(--ink-2);line-height:1.7}
+.commentary{display:flex;gap:14px;align-items:flex-start;border-radius:12px;padding:18px 20px;margin:24px 0;border:1px solid transparent}
+.commentary.constraint{background:#FDF6E8;border-color:#F0DFB4}
+.commentary.decision{background:#EDF4EC;border-color:#C3DCBF}
+.commentary.tradeoff{background:#EEF1F9;border-color:#C5CFEA}
+.commentary.evolves{background:#F5F0F9;border-color:#D8C8EA}
+.commentary-icon{font-size:18px;flex-shrink:0;margin-top:3px}
+.commentary.constraint .commentary-icon{color:#B07D20}
+.commentary.decision .commentary-icon{color:#3A7A36}
+.commentary.tradeoff .commentary-icon{color:#3A4E8C}
+.commentary.evolves .commentary-icon{color:#6B3D8C}
+.commentary-label{font-family:'General Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.commentary.constraint .commentary-label{color:#8A6010}
+.commentary.decision .commentary-label{color:#2C5C28}
+.commentary.tradeoff .commentary-label{color:#2D3D72}
+.commentary.evolves .commentary-label{color:#542D72}
+.commentary-text{font-family:'PlantMama',Georgia,serif;font-size:15px;line-height:1.7}
+.commentary.constraint .commentary-text{color:#5C4010}
+.commentary.decision .commentary-text{color:#1E3C1C}
+.commentary.tradeoff .commentary-text{color:#1E2848}
+.commentary.evolves .commentary-text{color:#38194C}
 
 /* ── ANNOTATED SCREENS ── */
 .annotated-wrap{display:flex;gap:0;align-items:flex-start;justify-content:center;margin:0 -70px;position:relative}
@@ -260,7 +276,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
     </div>
     <p class="body-text">We started at the end of August 2025 but didn't get access to users until mid-January 2026. For that first stretch, the design work was exploratory, based on what the tech team could tell us about the workflow. Once interviews began, being able to observe how analysts actually worked was invaluable. Several assumptions shifted significantly based on what we heard.</p>
 
-    <div class="commentary">
+    <div class="commentary constraint">
       <i class="ph ph-warning commentary-icon"></i>
       <div class="commentary-body">
         <div class="commentary-label">Constraint</div>
@@ -316,7 +332,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
       </div>
     </div>
 
-    <div class="commentary">
+    <div class="commentary decision">
       <i class="ph ph-lightbulb commentary-icon"></i>
       <div class="commentary-body">
         <div class="commentary-label">Design decision</div>
@@ -395,7 +411,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
       <h2 class="section-heading" id="design-heading">The request page was where the whole workflow came together</h2>
       <p class="screens-intro">The request details page needed to support active decision-making at every stage, not just display information. Because the workflow has distinct phases, and different actions are available at each one, the page adapts based on where the request is and what still needs to happen.</p>
 
-      <div class="commentary">
+      <div class="commentary tradeoff">
         <i class="ph ph-push-pin commentary-icon"></i>
         <div class="commentary-body">
           <div class="commentary-label">Tradeoff</div>
@@ -403,7 +419,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
         </div>
       </div>
 
-      <div class="commentary">
+      <div class="commentary evolves">
         <i class="ph ph-arrows-clockwise commentary-icon"></i>
         <div class="commentary-body">
           <div class="commentary-label">What changes over time</div>
