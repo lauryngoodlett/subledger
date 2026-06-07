@@ -14,11 +14,11 @@
 @font-face{font-family:'PlantMama';src:url('PlantMama.otf') format('opentype'),url('PlantMama.ttf') format('truetype');font-weight:normal;font-style:normal}
 
 /* ── DESIGNER COMMENTARY ── */
-.commentary{display:flex;align-items:baseline;gap:10px;margin:20px 0;padding:0;background:none;border:none;border-radius:0}
-.commentary-icon{font-size:16px;flex-shrink:0;line-height:1}
+.commentary{display:flex;align-items:baseline;gap:8px;margin:20px 0;padding:0;background:none;border:none;border-radius:0}
+.commentary-icon{font-size:15px;flex-shrink:0;line-height:1}
 .commentary-body{flex:1}
-.commentary-label{display:none}
-.commentary-text{font-family:'Caveat',cursive;font-size:22px;color:var(--ink-3);line-height:1.4;font-style:normal}
+.commentary-label{font-family:'General Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-4)}
+.commentary-text{font-family:'Caveat',cursive;font-size:21px;color:var(--ink-3);line-height:1.4}
 
 /* ── ANNOTATED SCREENS ── */
 .annotated-wrap{display:flex;gap:0;align-items:flex-start;justify-content:center;margin:0 -70px;position:relative}
@@ -101,7 +101,7 @@ body{background:linear-gradient(180deg,#E8EEF8 0%,#FAF9F6 520px) fixed,var(--bg)
 .complexity-text{font-size:13px;color:var(--ink-2);line-height:1.5;font-weight:500}
 
 /* ── WORKFLOW ── */
-.flow-wrap{margin:28px 0;overflow-x:auto}
+.flow-wrap{margin:28px 0;overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:28px 28px 20px;box-shadow:0 4px 20px rgba(29,31,33,.06),0 1px 4px rgba(29,31,33,.04)}
 .flow-title{font-family:'General Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-4);margin-bottom:24px}
 .swimlane{min-width:620px}
 .lane-row{display:flex;align-items:center;min-height:56px}
@@ -191,8 +191,8 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
   <div style="max-width:1100px;margin:0 auto;height:66px;display:flex;align-items:center;justify-content:space-between;padding:0 40px">
     <a href="https://lauryngoodlett.com" style="font-family:'Fraunces',Georgia,serif;font-size:18px;font-weight:700;color:#FAF9F6;text-decoration:none;letter-spacing:-0.01em">Lauryn Goodlett</a>
     <div style="display:flex;align-items:center;gap:28px">
-      <a href="https://lauryngoodlett.com/about" style="font-family:'General Sans',sans-serif;font-size:14px;font-weight:600;color:rgba(250,249,246,0.65);text-decoration:none">About</a>
-      <a href="https://lauryngoodlett.com/work" style="font-family:'General Sans',sans-serif;font-size:14px;font-weight:600;color:rgba(250,249,246,0.65);text-decoration:none">Work</a>
+      <a href="https://lauryngoodlett.com/about" style="font-family:'General Sans',sans-serif;font-size:14px;font-weight:700;color:rgba(250,249,246,0.75);text-decoration:none">About</a>
+      <a href="https://lauryngoodlett.com/work" style="font-family:'General Sans',sans-serif;font-size:14px;font-weight:700;color:rgba(250,249,246,0.75);text-decoration:none">Work</a>
       <a href="https://framerusercontent.com/assets/jMb0P5BuJm1ZGgocCLXu2w1EI0.pdf" style="font-family:'General Sans',sans-serif;font-size:14px;font-weight:600;color:#1D1F21;background:#FAF9F6;text-decoration:none;border-radius:20px;padding:7px 16px">Resume</a>
     </div>
   </div>
@@ -286,10 +286,9 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
     <p class="body-text">We started at the end of August 2025 but didn't get access to users until mid-January 2026. For that first stretch, the design work was exploratory, based on what the tech team could tell us about the workflow. Once interviews began, being able to observe how analysts actually worked was invaluable. Several assumptions shifted significantly based on what we heard.</p>
 
     <div class="commentary constraint">
-      <span class="commentary-icon">⚠️</span>
+      <span class="commentary-icon">✏️</span>
       <div class="commentary-body">
-        <div class="commentary-label">Constraint</div>
-        <div class="commentary-text">No user access for five months. Early decisions were built on engineering knowledge. Several assumptions shifted once interviews began.</div>
+        <span class="commentary-label">Design note</span><span class="commentary-text"> — No user access for five months. Several assumptions shifted once interviews began.</span>
       </div>
     </div>
 
@@ -342,10 +341,9 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
     </div>
 
     <div class="commentary decision">
-      <span class="commentary-icon">💡</span>
+      <span class="commentary-icon">✏️</span>
       <div class="commentary-body">
-        <div class="commentary-label">Design decision</div>
-        <div class="commentary-text">We assumed rule creation was the hard part. Interviews revealed the real bottleneck was request clarification.</div>
+        <span class="commentary-label">Design note</span><span class="commentary-text"> — We assumed rule creation was the hard part. Interviews revealed the real bottleneck was request clarification.</span>
       </div>
     </div>
   </section>
