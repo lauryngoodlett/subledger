@@ -157,6 +157,25 @@ body{background:linear-gradient(180deg,#E8EEF8 0%,#FAF9F6 520px) fixed,var(--bg)
 .outcome-label{font-family:'General Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);margin-bottom:8px}
 .outcome-text{font-size:14px;font-weight:500;color:var(--ink-2);line-height:1.55}
 
+/* ── PROBLEM STATS ── */
+.problem-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:24px;padding-top:24px;border-top:1px solid var(--line)}
+.ps-stat{display:flex;align-items:baseline;gap:6px;margin-bottom:10px}
+.ps-num{font-family:'General Sans',sans-serif;font-size:32px;font-weight:700;color:var(--ink);letter-spacing:-0.03em;line-height:1}
+.ps-unit{font-size:14px;font-weight:600;color:var(--ink-3)}
+.ps-logos{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.ps-logos img{width:18px;height:18px;object-fit:contain}
+.ps-desc{font-size:14px;font-weight:500;color:var(--ink-4);line-height:1.5}
+
+/* ── MORE WORK ── */
+.cs-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
+.cs-card{display:block;padding:24px;border:1px solid var(--line);border-radius:12px;text-decoration:none;background:var(--surface);transition:border-color .15s,box-shadow .15s}
+.cs-card:hover{border-color:var(--ink-3);box-shadow:0 4px 16px rgba(29,31,33,.08)}
+.cs-card-eyebrow{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-4);margin-bottom:10px}
+.cs-card-title{font-family:'Fraunces',Georgia,serif;font-size:20px;font-weight:700;color:var(--ink);margin-bottom:8px;line-height:1.2}
+.cs-card-desc{font-size:13px;font-weight:500;color:var(--ink-3);line-height:1.5;margin-bottom:16px}
+.cs-card-arrow{font-size:18px;color:var(--ink-4)}
+.cs-card-placeholder{opacity:0.45;pointer-events:none}
+
 /* ── FOOTER ── */
 .cs-footer{padding:40px 0;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;flex-wrap:gap}
 .footer-name{font-family:'General Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-4)}
@@ -292,18 +311,33 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
       </div>
     </div>
 
-    <div style="margin-top:24px;display:flex;flex-direction:column;gap:12px">
-      <div style="display:flex;gap:12px;align-items:baseline">
-        <span style="font-family:'General Sans',sans-serif;font-size:18px;font-weight:700;color:var(--ink);letter-spacing:-0.02em;min-width:80px;flex-shrink:0">5 tools</span>
-        <span style="font-size:15px;font-weight:500;color:var(--ink-3);line-height:1.5">Jira, spreadsheets, Teams, email, and phone — juggled to complete a single request</span>
+    <div class="problem-stats">
+      <div>
+        <div class="ps-stat">
+          <span class="ps-num">5</span>
+          <span class="ps-unit">tools</span>
+        </div>
+        <div class="ps-logos">
+          <img src="https://cdn.simpleicons.org/jira/0052CC" title="Jira" alt="Jira" />
+          <img src="https://cdn.simpleicons.org/microsoftexcel/217346" title="Excel / Spreadsheets" alt="Excel" />
+          <img src="https://cdn.simpleicons.org/microsoftteams/6264A7" title="Microsoft Teams" alt="Teams" />
+          <img src="https://cdn.simpleicons.org/microsoftoutlook/0078D4" title="Email / Outlook" alt="Email" />
+          <span style="font-size:16px" title="Phone">📞</span>
+        </div>
       </div>
-      <div style="display:flex;gap:12px;align-items:baseline">
-        <span style="font-family:'General Sans',sans-serif;font-size:18px;font-weight:700;color:var(--ink);letter-spacing:-0.02em;min-width:80px;flex-shrink:0">12–15</span>
-        <span style="font-size:15px;font-weight:500;color:var(--ink-3);line-height:1.5">requests a month, each needing multiple rounds of clarification before any rule work could start</span>
+      <div>
+        <div class="ps-stat">
+          <span class="ps-num">12–15</span>
+          <span class="ps-unit">requests / month</span>
+        </div>
+        <div class="ps-desc">each needing multiple rounds of clarification before any rule work could start</div>
       </div>
-      <div style="display:flex;gap:12px;align-items:baseline">
-        <span style="font-family:'General Sans',sans-serif;font-size:18px;font-weight:700;color:var(--ink);letter-spacing:-0.02em;min-width:80px;flex-shrink:0">310</span>
-        <span style="font-size:15px;font-weight:500;color:var(--ink-3);line-height:1.5">rule matrices holding 22,000+ individual lines — managed entirely in spreadsheets</span>
+      <div>
+        <div class="ps-stat">
+          <span class="ps-num">310</span>
+          <span class="ps-unit">rule matrices</span>
+        </div>
+        <div class="ps-desc">holding 22,000+ individual lines — managed entirely in spreadsheets</div>
       </div>
     </div>
   </section>
@@ -563,6 +597,24 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
   </section>
 
   <!-- Footer -->
+  <section class="section" aria-label="More work">
+    <div class="label section-label">More work</div>
+    <h2 class="section-heading">Other case studies</h2>
+    <div class="cs-grid">
+      <a href="https://lauryngoodlett.com/work/sva" class="cs-card">
+        <div class="cs-card-eyebrow">UX Design · Web App</div>
+        <div class="cs-card-title">Student Veterans of America</div>
+        <div class="cs-card-desc">Career exploration platform for 750K+ veterans — combining two existing tools into one purpose-built experience.</div>
+        <div class="cs-card-arrow">→</div>
+      </a>
+      <div class="cs-card cs-card-placeholder">
+        <div class="cs-card-eyebrow">Coming soon</div>
+        <div class="cs-card-title">Case study TBD</div>
+        <div class="cs-card-desc">More work on the way.</div>
+      </div>
+    </div>
+  </section>
+
   <footer class="cs-footer">
     <span class="footer-name">Lauryn Goodlett · Portfolio 2026</span>
     <a href="https://lauryngoodlett.com/work" class="footer-back">
