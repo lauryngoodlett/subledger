@@ -14,15 +14,11 @@
 @font-face{font-family:'PlantMama';src:url('PlantMama.otf') format('opentype'),url('PlantMama.ttf') format('truetype');font-weight:normal;font-style:normal}
 
 /* ── DESIGNER COMMENTARY ── */
-.commentary{display:flex;gap:16px;align-items:flex-start;background:none;border:none;border-radius:0;padding:28px 0;margin:8px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.commentary-icon{font-size:22px;flex-shrink:0;margin-top:6px}
-.commentary.constraint .commentary-icon{color:#C49020}
-.commentary.decision .commentary-icon{color:#4A9A46}
-.commentary.tradeoff .commentary-icon{color:#4A5EAC}
-.commentary.evolves .commentary-icon{color:#8A4DAC}
+.commentary{display:flex;align-items:baseline;gap:10px;margin:20px 0;padding:0;background:none;border:none;border-radius:0}
+.commentary-icon{font-size:16px;flex-shrink:0;line-height:1}
 .commentary-body{flex:1}
-.commentary-label{font-family:'General Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);margin-bottom:10px}
-.commentary-text{font-family:'Caveat',cursive;font-size:28px;font-weight:500;line-height:1.35;color:var(--ink);letter-spacing:.01em}
+.commentary-label{display:none}
+.commentary-text{font-family:'Caveat',cursive;font-size:22px;color:var(--ink-3);line-height:1.4;font-style:normal}
 
 /* ── ANNOTATED SCREENS ── */
 .annotated-wrap{display:flex;gap:0;align-items:flex-start;justify-content:center;margin:0 -70px;position:relative}
@@ -105,21 +101,21 @@ body{background:linear-gradient(180deg,#E8EEF8 0%,#FAF9F6 520px) fixed,var(--bg)
 .complexity-text{font-size:13px;color:var(--ink-2);line-height:1.5;font-weight:500}
 
 /* ── WORKFLOW ── */
-.flow-wrap{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:32px;margin:28px 0;overflow-x:auto}
+.flow-wrap{margin:28px 0;overflow-x:auto}
 .flow-title{font-family:'General Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-4);margin-bottom:24px}
-.swimlane{display:flex;flex-direction:column;gap:6px;min-width:560px}
-.lane-row{display:flex;align-items:center}
-.lane-label{width:96px;flex-shrink:0;font-family:'General Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-4);padding-right:14px;text-align:right}
-.lane-stages{display:flex;flex:1;gap:6px;align-items:center}
-.stage-box{flex:1;padding:10px 8px;border-radius:3px;text-align:center;font-size:11px;font-weight:600;font-family:'General Sans',sans-serif;line-height:1.3;min-height:42px;display:flex;align-items:center;justify-content:center;letter-spacing:.01em}
-.stage-empty{flex:1;min-height:42px}
-.sb-biz{background:#F3F5FB;color:#2A3A6A;border:1px solid #C8D0E8}
-.sb-acg{background:#F4F9EF;color:#2D5A0E;border:1px solid #BDDCA0}
-.sb-cond{background:transparent;color:var(--ink-4);border:1px dashed var(--line-2)}
-.lane-divider{height:1px;background:var(--line);margin:4px 0 4px 96px}
-.flow-legend{display:flex;gap:20px;margin-top:20px;padding-top:16px;border-top:1px solid var(--line);flex-wrap:wrap}
-.leg-item{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:500;color:var(--ink-4)}
-.leg-dot{width:10px;height:10px;border-radius:2px}
+.swimlane{min-width:620px}
+.lane-row{display:flex;align-items:center;min-height:56px}
+.lane-label{width:100px;flex-shrink:0;font-family:'General Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-4);padding-right:16px;text-align:right}
+.lane-stages{display:flex;flex:1;align-items:center;gap:4px}
+.stage-box{flex:1;padding:10px 10px;border-radius:3px;text-align:center;font-size:11px;font-weight:600;font-family:'General Sans',sans-serif;line-height:1.3;min-height:44px;display:flex;align-items:center;justify-content:center}
+.stage-empty{flex:1;min-height:44px}
+.sb-biz{background:transparent;color:#1e3a8a;border:1px solid #c8d0e8}
+.sb-acg{background:transparent;color:#1a4a16;border:1px solid #b8d8a8}
+.sb-cond{background:transparent;color:var(--ink-4);border:1px dashed #ccc;font-style:italic}
+.lane-divider{height:1px;background:var(--line);margin:4px 0 4px 100px}
+.flow-legend{display:flex;gap:24px;margin-top:20px;flex-wrap:wrap}
+.leg-item{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:500;color:var(--ink-4)}
+.leg-swatch{width:20px;height:10px;border-radius:2px}
 
 /* ── SCREENS ── */
 .screens-intro{font-size:15px;font-weight:500;color:var(--ink-3);line-height:1.75;margin-bottom:32px}
@@ -407,9 +403,9 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
         </div>
       </div>
       <div class="flow-legend">
-        <div class="leg-item"><div class="leg-dot sb-biz" style="border:1px solid #C8D0E8"></div>Business</div>
-        <div class="leg-item"><div class="leg-dot sb-acg" style="border:1px solid #C0DD97"></div>ACG</div>
-        <div class="leg-item"><div class="leg-dot sb-cond" style="border:1px dashed var(--line-2)"></div>Conditional</div>
+        <div class="leg-item"><div class="leg-swatch" style="border:1px solid #c8d0e8"></div>Business</div>
+        <div class="leg-item"><div class="leg-swatch" style="border:1px solid #b8d8a8"></div>ACG</div>
+        <div class="leg-item"><div class="leg-swatch" style="border:1px dashed #ccc"></div>Conditional</div>
       </div>
     </div>
   </section>
@@ -423,22 +419,6 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
       <div class="label section-label">The design</div>
       <h2 class="section-heading" id="design-heading">The request page was where the whole workflow came together</h2>
       <p class="screens-intro">The request details page needed to support active decision-making at every stage, not just display information. Because the workflow has distinct phases, and different actions are available at each one, the page adapts based on where the request is and what still needs to happen.</p>
-
-      <div class="commentary tradeoff">
-        <span class="commentary-icon">📌</span>
-        <div class="commentary-body">
-          <div class="commentary-label">Tradeoff</div>
-          <div class="commentary-text">Two-sided platform. One side shipped first — the other is designed in, not tacked on later.</div>
-        </div>
-      </div>
-
-      <div class="commentary evolves">
-        <span class="commentary-icon">🔄</span>
-        <div class="commentary-body">
-          <div class="commentary-label">What changes over time</div>
-          <div class="commentary-text">Designed to evolve. Before business users are in the platform, approvals go out by email. The page already accounts for the next two states.</div>
-        </div>
-      </div>
       <div style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 22px;margin:0 0 28px;display:flex;gap:16px;align-items:flex-start">
         <div style="font-family:'General Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);margin-top:2px;flex-shrink:0">Role context</div>
         <div style="font-size:14px;color:var(--ink-3);line-height:1.65">This view belongs to an ACG team member who can update rules and act on requests assigned to them, but can't reassign requests or access other teams' work. The locked and unlocked states reflect both workflow sequencing and user permissions. What's available changes based on role and where the request is in the process.</div>
