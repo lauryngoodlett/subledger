@@ -11,6 +11,13 @@
 @font-face{font-family:'General Sans';src:url('GeneralSans-Medium.otf') format('opentype');font-weight:500;font-style:normal}
 @font-face{font-family:'General Sans';src:url('GeneralSans-Semibold.otf') format('opentype');font-weight:600;font-style:normal}
 @font-face{font-family:'General Sans';src:url('GeneralSans-Bold.otf') format('opentype');font-weight:700;font-style:normal}
+@font-face{font-family:'PlantMama';src:url('PlantMama.otf') format('opentype'),url('PlantMama.ttf') format('truetype');font-weight:normal;font-style:normal}
+
+/* ── DESIGNER COMMENTARY ── */
+.commentary{display:flex;gap:14px;align-items:flex-start;background:#F4F3EF;border-left:3px solid var(--ink-4);border-radius:0 8px 8px 0;padding:16px 18px;margin:24px 0}
+.commentary-icon{font-size:18px;color:var(--ink-3);flex-shrink:0;margin-top:3px}
+.commentary-label{font-family:'General Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);margin-bottom:6px}
+.commentary-text{font-family:'PlantMama',Georgia,serif;font-size:15px;color:var(--ink-2);line-height:1.7}
 
 /* ── ANNOTATED SCREENS ── */
 .annotated-wrap{display:flex;gap:0;align-items:flex-start;justify-content:center;margin:0 -70px;position:relative}
@@ -192,8 +199,29 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
       <span style="font-family:'General Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4)">Systems Thinking</span>
     </div>
     <h1 class="hero-title">Designing a rules management platform<br><em>for finance operations — from 5 tools to one</em></h1>
-    <p class="hero-sub">Finance operations teams were managing accounting rules across Jira, spreadsheets, Teams, email, and phone calls. No tool existed for what they actually did.</p>
-    <div class="hero-meta">
+    <p class="hero-sub">Finance operations teams were managing accounting rules across Jira, spreadsheets, Teams, email, and phone calls. The work was getting done. Just not with tools built for it.</p>
+  </header>
+
+  <!-- Impact summary strip — moved above meta -->
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:0">
+    <div style="padding:20px 0;border-right:1px solid var(--line)">
+      <div style="font-family:'General Sans',sans-serif;font-size:26px;font-weight:700;color:var(--ink);letter-spacing:-0.03em;margin-bottom:4px">10+ hrs</div>
+      <div style="font-size:13px;font-weight:500;color:var(--ink-3);line-height:1.4">a month of clarification back-and-forth eliminated</div>
+    </div>
+    <div style="padding:20px 24px;border-right:1px solid var(--line)">
+      <div style="font-family:'General Sans',sans-serif;font-size:26px;font-weight:700;color:var(--ink);letter-spacing:-0.03em;margin-bottom:4px">5 → 1</div>
+      <div style="font-size:13px;font-weight:500;color:var(--ink-3);line-height:1.4">steps to send a change for business validation</div>
+    </div>
+    <div style="padding:20px 0 20px 24px">
+      <div style="font-family:'General Sans',sans-serif;font-size:26px;font-weight:700;color:var(--ink);letter-spacing:-0.03em;margin-bottom:4px">8 stages</div>
+      <div style="font-size:13px;font-weight:500;color:var(--ink-3);line-height:1.4">of a fragmented workflow unified into one system</div>
+    </div>
+  </div>
+
+  <!-- Meta below impact -->
+  <div style="border-bottom:1px solid var(--line)">
+  <div class="page">
+    <div class="hero-meta" style="padding:24px 0">
       <div class="meta-item">
         <div class="meta-label">Role</div>
         <div class="meta-value">Solo product designer</div>
@@ -211,22 +239,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
         <div class="meta-value">In development</div>
       </div>
     </div>
-  </header>
-
-  <!-- Impact summary strip -->
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:0">
-    <div style="padding:20px 0;border-right:1px solid var(--line)">
-      <div style="font-family:'General Sans',sans-serif;font-size:26px;font-weight:700;color:var(--ink);letter-spacing:-0.03em;margin-bottom:4px">10+ hrs</div>
-      <div style="font-size:13px;font-weight:500;color:var(--ink-3);line-height:1.4">a month of clarification back-and-forth eliminated</div>
-    </div>
-    <div style="padding:20px 24px;border-right:1px solid var(--line)">
-      <div style="font-family:'General Sans',sans-serif;font-size:26px;font-weight:700;color:var(--ink);letter-spacing:-0.03em;margin-bottom:4px">5 → 1</div>
-      <div style="font-size:13px;font-weight:500;color:var(--ink-3);line-height:1.4">steps to send a change for business validation</div>
-    </div>
-    <div style="padding:20px 0 20px 24px">
-      <div style="font-family:'General Sans',sans-serif;font-size:26px;font-weight:700;color:var(--ink);letter-spacing:-0.03em;margin-bottom:4px">8 stages</div>
-      <div style="font-size:13px;font-weight:500;color:var(--ink-3);line-height:1.4">of a fragmented workflow unified into one system</div>
-    </div>
+  </div>
   </div>
 
   <!-- Problem -->
@@ -246,6 +259,14 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
       </div>
     </div>
     <p class="body-text">We started at the end of August 2025 but didn't get access to users until mid-January 2026. For that first stretch, the design work was exploratory, based on what the tech team could tell us about the workflow. Once interviews began, being able to observe how analysts actually worked was invaluable. Several assumptions shifted significantly based on what we heard.</p>
+
+    <div class="commentary">
+      <i class="ph ph-warning commentary-icon"></i>
+      <div class="commentary-body">
+        <div class="commentary-label">Constraint</div>
+        <div class="commentary-text">No access to users for the first five months. Early decisions were grounded in engineering knowledge and process documentation. Several assumptions shifted once interviews began — including where most of the time was actually being lost.</div>
+      </div>
+    </div>
 
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px">
       <div style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px">
@@ -294,12 +315,20 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
         <span class="complexity-text">Changes were made directly in production with no test environment, so accuracy and confidence before sign-off mattered enormously</span>
       </div>
     </div>
+
+    <div class="commentary">
+      <i class="ph ph-lightbulb commentary-icon"></i>
+      <div class="commentary-body">
+        <div class="commentary-label">Design decision</div>
+        <div class="commentary-text">We originally assumed rule creation was the hardest part of the workflow. Interviews revealed that request clarification — the back-and-forth before any build work could start — was where most of the time was actually being lost.</div>
+      </div>
+    </div>
   </section>
 
   <!-- Workflow -->
   <section class="section" aria-labelledby="workflow-heading">
-    <div class="label section-label">The system</div>
-    <h2 class="section-heading" id="workflow-heading">Understanding the current state before making any design decisions</h2>
+    <div class="label section-label">Mapping the system</div>
+    <h2 class="section-heading" id="workflow-heading">We couldn't design the future state until the team agreed on how the process actually worked</h2>
     <p class="body-text">Documenting the end-to-end workflow was a core part of the research phase. Neither design nor the broader team came in with deep domain knowledge, so understanding how the process actually worked across all stages was necessary before identifying where the real gaps were.</p>
     <p class="body-text">It also gave stakeholders a clearer picture of where friction was happening and where requests were getting stuck. Seeing the full workflow laid out made it easier to have conversations about sequencing, ownership, and where the process was breaking down.</p>
 
@@ -363,8 +392,24 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
   <div class="page">
     <section class="section" aria-labelledby="design-heading">
       <div class="label section-label">The design</div>
-      <h2 class="section-heading" id="design-heading">Designing the request details page</h2>
+      <h2 class="section-heading" id="design-heading">The request page was where the whole workflow came together</h2>
       <p class="screens-intro">The request details page needed to support active decision-making at every stage, not just display information. Because the workflow has distinct phases, and different actions are available at each one, the page adapts based on where the request is and what still needs to happen.</p>
+
+      <div class="commentary">
+        <i class="ph ph-push-pin commentary-icon"></i>
+        <div class="commentary-body">
+          <div class="commentary-label">Tradeoff</div>
+          <div class="commentary-text">This is a two-sided platform — business users and ACG analysts. Designing both sides simultaneously would have delayed delivery by several quarters. One side shipped first, with the other designed in so it doesn't have to be rebuilt when the time comes.</div>
+        </div>
+      </div>
+
+      <div class="commentary">
+        <i class="ph ph-arrows-clockwise commentary-icon"></i>
+        <div class="commentary-body">
+          <div class="commentary-label">What changes over time</div>
+          <div class="commentary-text">This page was designed to evolve. Right now, business users aren't in the platform yet — ACG sends the structured summary by email. The same page is designed to support a mid-state where business reads and approves inline, and eventually a fully integrated two-sided view. Each stage is designed in.</div>
+        </div>
+      </div>
       <div style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 22px;margin:0 0 28px;display:flex;gap:16px;align-items:flex-start">
         <div style="font-family:'General Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);margin-top:2px;flex-shrink:0">Role context</div>
         <div style="font-size:14px;color:var(--ink-3);line-height:1.65">This view belongs to an ACG team member who can update rules and act on requests assigned to them, but can't reassign requests or access other teams' work. The locked and unlocked states reflect both workflow sequencing and user permissions. What's available changes based on role and where the request is in the process.</div>
@@ -460,7 +505,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
   <!-- Key decisions -->
   <section class="section" aria-labelledby="decisions-heading">
     <div class="label section-label">Key decisions</div>
-    <h2 class="section-heading" id="decisions-heading">What shaped the design</h2>
+    <h2 class="section-heading" id="decisions-heading">Three decisions changed the direction of the project</h2>
     <div class="decisions">
       <div class="decision">
         <div class="decision-num" aria-hidden="true">01</div>
@@ -488,8 +533,8 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
 
   <!-- Outcomes -->
   <section class="section" aria-labelledby="outcomes-heading">
-    <div class="label section-label">What shifted</div>
-    <h2 class="section-heading" id="outcomes-heading">What the design actually changes</h2>
+    <div class="label section-label">Outcomes</div>
+    <h2 class="section-heading" id="outcomes-heading">What it changed for the analysts</h2>
     <p class="body-text">Not every part of the workflow changed. These three did, in specific, measurable ways.</p>
     <div class="outcomes-grid">
       <div class="outcome">
