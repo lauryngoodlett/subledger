@@ -157,7 +157,7 @@ body{background:linear-gradient(180deg,#E8EEF8 0%,#FAF9F6 520px) fixed,var(--bg)
 /* ── OUTCOMES ── */
 .outcomes-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:28px}
 .outcome{padding:24px;background:var(--surface);border:1px solid var(--line);border-radius:12px}
-.outcome-icon{font-size:24px;color:var(--ink-4);margin-bottom:14px;display:block;line-height:1}
+.outcome-icon{font-size:24px;margin-bottom:14px;display:block;line-height:1}
 .outcome-label{font-family:'General Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);margin-bottom:8px}
 .outcome-text{font-size:14px;font-weight:500;color:var(--ink-2);line-height:1.55}
 
@@ -201,6 +201,14 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
     </div>
   </div>
 </nav>
+
+<!-- Header image -->
+<div style="width:100%;background:#E8EDF2;height:400px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--line)">
+  <div style="text-align:center">
+    <div style="font-family:'General Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#9BA8B5;margin-bottom:8px">Header image</div>
+    <div style="font-family:'General Sans',sans-serif;font-size:13px;font-weight:500;color:#BDC5CF">Replace with project screenshot or banner</div>
+  </div>
+</div>
 
 <div class="page">
 
@@ -269,7 +277,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
     <h2 class="section-heading" id="problem-heading">A critical workflow held together by too many tools</h2>
     <p class="body-text">The Accounting Controls Group (ACG) manages the financial rules that determine how transactions map to general ledger outputs. When something needs to change, a request comes in and ACG has to review it, build the rule change, get it approved, and deploy it.</p>
     <p class="body-text">In reality, that process was spread across Jira, spreadsheets, Teams, email, and phone calls. Requests came in incomplete. Clarification loops between analysts and the business teams who submitted requests got buried in Jira comments. A lot of the process knowledge lived with specific people on the team rather than in any shared system or documentation.</p>
-    <div style="background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px 26px;margin:24px 0;box-shadow:0 8px 32px rgba(29,31,33,.08),0 2px 8px rgba(29,31,33,.06)">
+    <div style="background:#F0F4FF;border:1px solid #C8D4F0;border-radius:14px;padding:24px 26px;margin:24px 0;box-shadow:0 8px 32px rgba(29,31,33,.08),0 2px 8px rgba(29,31,33,.06)">
       <p style="font-family:'General Sans',sans-serif;font-size:15px;font-weight:500;color:var(--ink-2);line-height:1.6;margin-bottom:16px">"The back-and-forth is what takes the longest. At least 10 hours a month just clarifying requests before any actual rule work can start."</p>
       <div style="display:flex;align-items:center;gap:10px">
         <div style="width:32px;height:32px;border-radius:50%;background:var(--line);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--ink-3);flex-shrink:0">A</div>
@@ -282,7 +290,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
     <p class="body-text">We started at the end of August 2025 but didn't get access to users until mid-January 2026. For that first stretch, the design work was exploratory, based on what the tech team could tell us about the workflow. Once interviews began, being able to observe how analysts actually worked was invaluable. Several assumptions shifted significantly based on what we heard.</p>
 
     <div class="commentary constraint">
-      <i class="ph ph-warning commentary-icon"></i>
+      <span class="commentary-icon">⚠️</span>
       <div class="commentary-body">
         <div class="commentary-label">Constraint</div>
         <div class="commentary-text">No user access for five months. Early decisions were built on engineering knowledge. Several assumptions shifted once interviews began.</div>
@@ -338,7 +346,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
     </div>
 
     <div class="commentary decision">
-      <i class="ph ph-compass commentary-icon"></i>
+      <span class="commentary-icon">💡</span>
       <div class="commentary-body">
         <div class="commentary-label">Design decision</div>
         <div class="commentary-text">We assumed rule creation was the hard part. Interviews revealed the real bottleneck was request clarification.</div>
@@ -417,7 +425,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
       <p class="screens-intro">The request details page needed to support active decision-making at every stage, not just display information. Because the workflow has distinct phases, and different actions are available at each one, the page adapts based on where the request is and what still needs to happen.</p>
 
       <div class="commentary tradeoff">
-        <i class="ph ph-push-pin commentary-icon"></i>
+        <span class="commentary-icon">📌</span>
         <div class="commentary-body">
           <div class="commentary-label">Tradeoff</div>
           <div class="commentary-text">Two-sided platform. One side shipped first — the other is designed in, not tacked on later.</div>
@@ -425,7 +433,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
       </div>
 
       <div class="commentary evolves">
-        <i class="ph ph-arrows-clockwise commentary-icon"></i>
+        <span class="commentary-icon">🔄</span>
         <div class="commentary-body">
           <div class="commentary-label">What changes over time</div>
           <div class="commentary-text">Designed to evolve. Before business users are in the platform, approvals go out by email. The page already accounts for the next two states.</div>
@@ -559,17 +567,17 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
     <p class="body-text">Not every part of the workflow changed. These three did, in specific, measurable ways.</p>
     <div class="outcomes-grid">
       <div class="outcome">
-        <i class="ph ph-funnel-simple outcome-icon"></i>
+        <span class="outcome-icon">✅</span>
         <div class="outcome-label">Intake validation</div>
         <div class="outcome-text">Complete submissions required before a request enters the system. Analysts described spending 10+ hours a month chasing missing fields — that loop doesn't exist if the system won't accept an incomplete request.</div>
       </div>
       <div class="outcome">
-        <i class="ph ph-paper-plane-tilt outcome-icon"></i>
+        <span class="outcome-icon">✉️</span>
         <div class="outcome-label">Business validation</div>
         <div class="outcome-text">One action replaces five manual steps. The structured summary — rule diff, evidence, and impact estimate — goes out automatically. Nothing to assemble.</div>
       </div>
       <div class="outcome">
-        <i class="ph ph-clock-counter-clockwise outcome-icon"></i>
+        <span class="outcome-icon">🗂️</span>
         <div class="outcome-label">Audit trail</div>
         <div class="outcome-text">Approvals and change history move into the platform. Who approved what and when is one click, not a Jira search.</div>
       </div>
