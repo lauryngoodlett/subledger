@@ -22,7 +22,7 @@
 .commentary.evolves .commentary-icon{color:#8A4DAC}
 .commentary-body{}
 .commentary-label{font-family:'General Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);margin-bottom:6px}
-.commentary-text{font-family:'Caveat',cursive;font-size:19px;line-height:1.5;color:var(--ink-2);letter-spacing:.01em}
+.commentary-text{font-family:'Loved by the King',cursive;font-size:22px;line-height:1.45;color:var(--ink-2);letter-spacing:.02em}
 
 /* ── ANNOTATED SCREENS ── */
 .annotated-wrap{display:flex;gap:0;align-items:flex-start;justify-content:center;margin:0 -70px;position:relative}
@@ -186,7 +186,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Loved+by+the+King&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
 </head>
 <body>
@@ -270,7 +270,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
       <i class="ph ph-warning commentary-icon"></i>
       <div class="commentary-body">
         <div class="commentary-label">Constraint</div>
-        <div class="commentary-text">No access to users for the first five months. Early decisions were grounded in engineering knowledge and process documentation. Several assumptions shifted once interviews began — including where most of the time was actually being lost.</div>
+        <div class="commentary-text">No user access for five months. Early decisions were built on engineering knowledge. Several assumptions shifted once interviews began.</div>
       </div>
     </div>
 
@@ -326,7 +326,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
       <i class="ph ph-lightbulb commentary-icon"></i>
       <div class="commentary-body">
         <div class="commentary-label">Design decision</div>
-        <div class="commentary-text">We originally assumed rule creation was the hardest part of the workflow. Interviews revealed that request clarification — the back-and-forth before any build work could start — was where most of the time was actually being lost.</div>
+        <div class="commentary-text">We assumed rule creation was the hard part. Interviews revealed the real bottleneck was request clarification.</div>
       </div>
     </div>
   </section>
@@ -405,7 +405,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
         <i class="ph ph-push-pin commentary-icon"></i>
         <div class="commentary-body">
           <div class="commentary-label">Tradeoff</div>
-          <div class="commentary-text">This is a two-sided platform — business users and ACG analysts. Designing both sides simultaneously would have delayed delivery by several quarters. One side shipped first, with the other designed in so it doesn't have to be rebuilt when the time comes.</div>
+          <div class="commentary-text">Two-sided platform. One side shipped first — the other is designed in, not tacked on later.</div>
         </div>
       </div>
 
@@ -413,7 +413,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
         <i class="ph ph-arrows-clockwise commentary-icon"></i>
         <div class="commentary-body">
           <div class="commentary-label">What changes over time</div>
-          <div class="commentary-text">This page was designed to evolve. Right now, business users aren't in the platform yet — ACG sends the structured summary by email. The same page is designed to support a mid-state where business reads and approves inline, and eventually a fully integrated two-sided view. Each stage is designed in.</div>
+          <div class="commentary-text">Designed to evolve. Before business users are in the platform, approvals go out by email. The page already accounts for the next two states.</div>
         </div>
       </div>
       <div style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 22px;margin:0 0 28px;display:flex;gap:16px;align-items:flex-start">
