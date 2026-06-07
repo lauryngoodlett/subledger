@@ -17,7 +17,7 @@
 .commentary{display:flex;align-items:baseline;gap:8px;margin:20px 0;padding:0;background:none;border:none;border-radius:0}
 .commentary-icon{font-size:15px;flex-shrink:0;line-height:1}
 .commentary-body{flex:1}
-.commentary-label{font-family:'General Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-4)}
+.commentary-label{font-family:'Caveat',cursive;font-size:21px;font-weight:600;color:var(--ink-3)}
 .commentary-text{font-family:'Caveat',cursive;font-size:21px;color:var(--ink-3);line-height:1.4}
 
 /* ── ANNOTATED SCREENS ── */
@@ -82,11 +82,11 @@ body{background:linear-gradient(180deg,#E8EEF8 0%,#FAF9F6 520px) fixed,var(--bg)
 .meta-value{font-size:15px;color:var(--ink);font-weight:500;line-height:1.5}
 
 /* ── SECTION ── */
-.section{padding:56px 0}
+.section{padding:48px 0}
 .section+.section{border-top:1px solid var(--line)}
-.section-label{margin-bottom:12px}
-.section-heading{font-family:'General Sans',sans-serif;font-weight:600;font-size:32px;color:var(--ink);line-height:1.15;margin-bottom:18px;letter-spacing:-0.01em}
-.body-text{font-size:15px;font-weight:500;color:var(--ink-3);line-height:1.75;margin-bottom:14px}
+.section-label{margin-bottom:10px}
+.section-heading{font-family:'General Sans',sans-serif;font-weight:600;font-size:32px;color:var(--ink);line-height:1.15;margin-bottom:16px;letter-spacing:-0.01em}
+.body-text{font-size:15px;font-weight:500;color:var(--ink-3);line-height:1.75;margin-bottom:20px}
 .body-text:last-child{margin-bottom:0}
 .body-text strong{color:var(--ink-2);font-weight:600}
 
@@ -273,7 +273,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
     <h2 class="section-heading" id="problem-heading">A critical workflow held together by too many tools</h2>
     <p class="body-text">The Accounting Controls Group (ACG) manages the financial rules that determine how transactions map to general ledger outputs. When something needs to change, a request comes in and ACG has to review it, build the rule change, get it approved, and deploy it.</p>
     <p class="body-text">In reality, that process was spread across Jira, spreadsheets, Teams, email, and phone calls. Requests came in incomplete. Clarification loops between analysts and the business teams who submitted requests got buried in Jira comments. A lot of the process knowledge lived with specific people on the team rather than in any shared system or documentation.</p>
-    <div style="background:#F0F4FF;border:1px solid #C8D4F0;border-radius:14px;padding:24px 26px;margin:24px 0;box-shadow:0 8px 32px rgba(29,31,33,.08),0 2px 8px rgba(29,31,33,.06)">
+    <div style="background:#F0F4FF;border:1px solid #C8D4F0;border-radius:14px;padding:24px 26px;margin:24px 0">
       <p style="font-family:'General Sans',sans-serif;font-size:15px;font-weight:500;color:var(--ink-2);line-height:1.6;margin-bottom:16px">"The back-and-forth is what takes the longest. At least 10 hours a month just clarifying requests before any actual rule work can start."</p>
       <div style="display:flex;align-items:center;gap:10px">
         <div style="width:32px;height:32px;border-radius:50%;background:var(--line);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--ink-3);flex-shrink:0">A</div>
@@ -292,18 +292,18 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
       </div>
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px">
-      <div style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px">
-        <div style="font-family:'General Sans',sans-serif;font-size:28px;font-weight:700;color:var(--ink);letter-spacing:-0.03em;margin-bottom:4px">5 tools</div>
-        <div style="font-size:13px;font-weight:500;color:var(--ink-3);line-height:1.5">Jira, spreadsheets, Teams, email, and phone, juggled to complete a single request</div>
+    <div style="margin-top:24px;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;gap:12px;align-items:baseline">
+        <span style="font-family:'General Sans',sans-serif;font-size:18px;font-weight:700;color:var(--ink);letter-spacing:-0.02em;min-width:80px;flex-shrink:0">5 tools</span>
+        <span style="font-size:15px;font-weight:500;color:var(--ink-3);line-height:1.5">Jira, spreadsheets, Teams, email, and phone — juggled to complete a single request</span>
       </div>
-      <div style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px">
-        <div style="font-family:'General Sans',sans-serif;font-size:28px;font-weight:700;color:var(--ink);letter-spacing:-0.03em;margin-bottom:4px">12–15</div>
-        <div style="font-size:13px;font-weight:500;color:var(--ink-3);line-height:1.5">requests a month, each needing multiple rounds of clarification before work could start</div>
+      <div style="display:flex;gap:12px;align-items:baseline">
+        <span style="font-family:'General Sans',sans-serif;font-size:18px;font-weight:700;color:var(--ink);letter-spacing:-0.02em;min-width:80px;flex-shrink:0">12–15</span>
+        <span style="font-size:15px;font-weight:500;color:var(--ink-3);line-height:1.5">requests a month, each needing multiple rounds of clarification before any rule work could start</span>
       </div>
-      <div style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px">
-        <div style="font-family:'General Sans',sans-serif;font-size:28px;font-weight:700;color:var(--ink);letter-spacing:-0.03em;margin-bottom:4px">310</div>
-        <div style="font-size:13px;font-weight:500;color:var(--ink-3);line-height:1.5">rule matrices holding 22,000+ individual lines, managed entirely in spreadsheets</div>
+      <div style="display:flex;gap:12px;align-items:baseline">
+        <span style="font-family:'General Sans',sans-serif;font-size:18px;font-weight:700;color:var(--ink);letter-spacing:-0.02em;min-width:80px;flex-shrink:0">310</span>
+        <span style="font-size:15px;font-weight:500;color:var(--ink-3);line-height:1.5">rule matrices holding 22,000+ individual lines — managed entirely in spreadsheets</span>
       </div>
     </div>
   </section>
