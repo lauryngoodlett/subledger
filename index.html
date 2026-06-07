@@ -79,11 +79,10 @@ body{background:linear-gradient(180deg,#E8EEF8 0%,#FAF9F6 520px) fixed,var(--bg)
 .hero-title{font-family:'General Sans',sans-serif;font-weight:600;font-size:48px;line-height:1.1;color:var(--ink);margin-bottom:20px;letter-spacing:-0.02em}
 .hero-title em{font-style:italic;font-weight:500;color:var(--ink-2)}
 .hero-sub{font-size:18px;color:var(--ink-3);line-height:1.65;max-width:600px;margin-bottom:36px}
-.hero-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);padding-top:32px;margin-top:8px}
+.hero-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:0;padding-top:28px;margin-top:0}
 .meta-item{padding:0 32px 0 0}
-.meta-item:not(:last-child){border-right:1px solid var(--line);margin-right:32px}
 .meta-item:last-child{padding-right:0}
-.meta-label{font-family:'General Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-4);margin-bottom:10px}
+.meta-label{font-family:'General Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-4);margin-bottom:8px}
 .meta-value{font-size:15px;color:var(--ink);font-weight:500;line-height:1.5}
 
 /* ── SECTION ── */
@@ -191,6 +190,17 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
 </head>
 <body>
 
+<!-- Nav bar -->
+<nav style="position:sticky;top:0;z-index:100;background:rgba(250,249,246,0.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)">
+  <div style="max-width:760px;margin:0 auto;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 32px">
+    <span style="font-family:'General Sans',sans-serif;font-size:15px;font-weight:700;color:var(--ink);letter-spacing:-0.01em">Lauryn Goodlett</span>
+    <a href="https://lauryngoodlett.com/work" style="display:inline-flex;align-items:center;gap:6px;font-family:'General Sans',sans-serif;font-size:13px;font-weight:500;color:var(--ink-3);text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--ink-3)'">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back to work
+    </a>
+  </div>
+</nav>
+
 <div class="page">
 
   <!-- Hero -->
@@ -210,25 +220,25 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
     <p class="hero-sub">Finance operations teams were managing accounting rules across Jira, spreadsheets, Teams, email, and phone calls. The work was getting done. Just not with tools built for it.</p>
   </header>
 
-  <!-- Impact summary strip — moved above meta -->
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:0">
-    <div style="padding:20px 0;border-right:1px solid var(--line)">
+  <!-- Impact summary strip -->
+  <div style="display:flex;gap:48px;padding:28px 0;border-top:1px solid var(--line)">
+    <div>
       <div style="font-family:'General Sans',sans-serif;font-size:26px;font-weight:700;color:var(--ink);letter-spacing:-0.03em;margin-bottom:4px">10+ hrs</div>
       <div style="font-size:13px;font-weight:500;color:var(--ink-3);line-height:1.4">a month of clarification back-and-forth eliminated</div>
     </div>
-    <div style="padding:20px 24px;border-right:1px solid var(--line)">
+    <div>
       <div style="font-family:'General Sans',sans-serif;font-size:26px;font-weight:700;color:var(--ink);letter-spacing:-0.03em;margin-bottom:4px">5 → 1</div>
       <div style="font-size:13px;font-weight:500;color:var(--ink-3);line-height:1.4">steps to send a change for business validation</div>
     </div>
-    <div style="padding:20px 0 20px 24px">
+    <div>
       <div style="font-family:'General Sans',sans-serif;font-size:26px;font-weight:700;color:var(--ink);letter-spacing:-0.03em;margin-bottom:4px">8 stages</div>
       <div style="font-size:13px;font-weight:500;color:var(--ink-3);line-height:1.4">of a fragmented workflow unified into one system</div>
     </div>
   </div>
 
-  <!-- Meta below impact -->
-  <div style="border-bottom:1px solid var(--line)">
-    <div class="hero-meta" style="padding:24px 0">
+  <!-- Meta -->
+  <div style="border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+    <div class="hero-meta" style="padding:20px 0 24px">
       <div class="meta-item">
         <div class="meta-label">Role</div>
         <div class="meta-value">Solo product designer</div>
