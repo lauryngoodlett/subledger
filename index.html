@@ -29,9 +29,9 @@
 .furl{margin-left:10px;font-family:'General Sans',sans-serif;font-size:11px;font-weight:500;color:var(--ink-4)}
 .annotated-panel{width:260px;flex-shrink:0;position:relative;align-self:stretch;margin-left:8px}
 .ann-callout{position:absolute;left:0;right:0;display:flex;align-items:flex-start;gap:0}
-.ann-line{height:1px;width:24px;background:var(--ink-4);flex-shrink:0;margin-top:10px}
-.ann-box{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:9px 12px;font-size:11.5px;font-weight:500;color:var(--ink-3);line-height:1.5;flex:1;box-shadow:0 1px 4px rgba(29,31,33,.04)}
-.ann-box strong{display:block;font-weight:600;color:var(--ink);margin-bottom:3px;font-size:11.5px}
+.ann-line{height:1px;width:20px;background:var(--ink-4);opacity:0.35;flex-shrink:0;margin-top:9px}
+.ann-box{background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 13px;font-size:11px;font-weight:500;color:var(--ink-3);line-height:1.55;flex:1;box-shadow:0 2px 8px rgba(29,31,33,.06)}
+.ann-box strong{display:block;font-weight:700;color:var(--ink-2);margin-bottom:3px;font-size:11px;letter-spacing:.01em}
 @media(max-width:980px){
   .annotated-wrap{margin:0;flex-direction:column;align-items:stretch}
   .annotated-screen{width:100%}
@@ -119,16 +119,16 @@ body{background:linear-gradient(180deg,#E8EEF8 0%,#FAF9F6 520px) fixed,var(--bg)
 
 /* ── SCREENS ── */
 .screens-intro{font-size:15px;font-weight:500;color:var(--ink-3);line-height:1.75;margin-bottom:32px}
-.screen-block{margin-bottom:48px}
+.screen-block{margin-bottom:56px}
 .screen-block:last-child{margin-bottom:0}
-.screen-meta{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+.screen-meta{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:14px;flex-wrap:wrap}
 .screen-info{}
-.screen-number{font-family:'General Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);margin-bottom:4px}
-.screen-name{font-family:'General Sans',sans-serif;font-weight:600;font-size:22px;color:var(--ink);line-height:1.2}
-.screen-desc{font-size:13px;color:var(--ink-3);margin-top:4px;max-width:400px;line-height:1.5}
-.screen-link{display:inline-flex;align-items:center;gap:7px;font-family:'General Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);text-decoration:none;padding:9px 16px;border:1px solid var(--accent);border-radius:8px;white-space:nowrap;transition:all .15s ease;flex-shrink:0}
-.screen-link:hover{background:var(--accent);color:#fff}
-.screen-link svg{width:13px;height:13px;stroke-width:2}
+.screen-number{font-family:'General Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-4);margin-bottom:5px}
+.screen-name{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:26px;color:var(--ink);line-height:1.15;letter-spacing:-0.01em}
+.screen-desc{font-size:14px;color:var(--ink-3);margin-top:6px;max-width:480px;line-height:1.6}
+.screen-link{display:inline-flex;align-items:center;gap:5px;font-family:'General Sans',sans-serif;font-size:12px;font-weight:500;color:var(--ink-4);text-decoration:none;white-space:nowrap;padding-bottom:2px;border-bottom:1px solid var(--line);transition:color .12s,border-color .12s}
+.screen-link:hover{color:var(--ink);border-color:var(--ink-3)}
+.screen-link svg{width:11px;height:11px;stroke-width:2}
 .screen-preview{border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--surface);position:relative}
 .screen-preview-bar{background:#F3F4F6;border-bottom:1px solid var(--line);padding:10px 16px;display:flex;align-items:center;gap:7px}
 .browser-dot{width:10px;height:10px;border-radius:50%;background:var(--line-2)}
@@ -464,9 +464,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
             <div class="screen-name">Incoming request</div>
             <div class="screen-desc">A new request arrives. ACG reviews the details, verifies the intent, and classifies it to a rule before any build work begins.</div>
           </div>
-          <a href="request_detail_incoming.html" target="_blank" class="screen-link" aria-label="Open incoming request screen in full">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            View full screen
+          <a href="request_detail_incoming.html" target="_blank" class="screen-link" aria-label="Open incoming request screen in full">↗ Open
           </a>
         </div>
         <div class="annotated-wrap">
@@ -504,9 +502,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
             <div class="screen-name">Ready for approval</div>
             <div class="screen-desc">Execution is complete. The rule has been classified, built, and verified. ACG sends it to the requester for confirmation before deploying.</div>
           </div>
-          <a href="request_detail_sanitized.html" target="_blank" class="screen-link" aria-label="Open approval state screen in full">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            View full screen
+          <a href="request_detail_sanitized.html" target="_blank" class="screen-link" aria-label="Open approval state screen in full">↗ Open
           </a>
         </div>
         <div class="annotated-wrap">
