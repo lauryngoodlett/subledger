@@ -670,17 +670,15 @@
           </div>
         </div>
         
-        <div class="alert">
+        <div class="alert" style="background:#ffffff;border:1px solid var(--border);border-left:4px solid #059669;align-items:center">
           <div class="alert-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10" stroke="#059669"></circle>
-              <path d="M9 12l2 2 4-4" stroke="#059669"></path>
-            </svg>
+            <svg viewBox="0 0 24 24" width="20" height="20"><circle cx="12" cy="12" r="10" fill="#dcfce7"/><circle cx="12" cy="12" r="10" stroke="#059669" stroke-width="1.5" fill="none"/><path d="M8 12l3 3 5-5" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
-          <div class="alert-content">
-            <div class="alert-title">Execution complete.</div>
-            <div class="alert-text">The rule change has been verified and built. Send to the requester for confirmation before deploying.</div>
+          <div class="alert-content" style="flex:1">
+            <div class="alert-title" style="color:#14532d">Execution complete — send to business for validation</div>
+            <div class="alert-text" style="color:#166534">Business must confirm the rule change matches the intended impact before checker sign-off.</div>
           </div>
+          <a href="#validation-actions" style="display:inline-flex;align-items:center;gap:6px;background:var(--primary);color:white;font-size:12px;font-weight:600;text-decoration:none;padding:7px 12px;border-radius:6px;white-space:nowrap;flex-shrink:0">Send to business <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><polyline points="9 18 15 12 9 6"/></svg></a>
         </div>
         
         <div class="main-section">
