@@ -28,7 +28,7 @@
     
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-      background: var(--bg-secondary);
+      background: #FAFAF8;
       color: var(--text-primary);
       line-height: 1.6;
     }
@@ -43,34 +43,15 @@
       gap: 16px;
     }
     
-    .logo-placeholder {
-      font-family: 'Monaco', 'Menlo', monospace;
-      font-size: 20px;
-      font-weight: 900;
-      letter-spacing: -0.5px;
-      line-height: 1;
-      display: flex;
-      gap: 0px;
-    }
-    
-    .logo-placeholder::before {
-      content: '/';
-      color: #dc2626;
-    }
-    
-    .logo-placeholder::after {
-      content: '/';
-      color: #1e40af;
-    }
+
     
     .app-name {
-      font-size: 14px;
-      font-weight: 950;
+      font-size: 15px;
+      font-weight: 400;
       color: #111827;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      font-style: italic;
-      font-family: 'Monaco', 'Menlo', monospace;
+      letter-spacing: 0.04em;
+      font-style: normal;
+      font-family: 'Bakbak One', monospace;
       line-height: 1;
       -webkit-text-stroke: 0.5px #111827;
     }
@@ -85,13 +66,17 @@
     
     .sidebar {
       width: 256px;
-      background: var(--bg-primary);
+      background: #EEF4FF;
       border-right: 1px solid var(--border);
       padding: 20px 16px;
       display: flex;
       flex-direction: column;
-      gap: 32px;
+      gap: 0;
+      justify-content: flex-start;
+      min-height: calc(100vh - 64px);
     }
+    .sidebar-sections { display: flex; flex-direction: column; gap: 32px; flex: 1; }
+    .sidebar-bottom { margin-top: auto; padding-top: 16px; border-top: 1px solid rgba(30,64,175,0.1); }
     
     .sidebar-section {
       display: flex;
@@ -115,16 +100,21 @@
       cursor: pointer;
       transition: background 0.2s;
       color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 9px;
     }
+    .sidebar-item i { font-size: 16px; opacity: 0.65; flex-shrink: 0; }
+    .sidebar-item.active i { opacity: 1; }
     
     .sidebar-item:hover {
       background: var(--bg-tertiary);
     }
     
     .sidebar-item.active {
-      background: var(--primary-light);
+      background: #ffffff;
       color: var(--primary);
-      font-weight: 500;
+      font-weight: 600;
     }
     
     .main {
@@ -189,13 +179,13 @@
     }
     
     .button-outline {
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      border: 1px solid var(--border);
+      background: white;
+      color: var(--primary);
+      border: 1.5px solid var(--primary);
     }
     
     .button-outline:hover {
-      background: var(--bg-tertiary);
+      background: var(--primary-light);
     }
     
     .button-text {
@@ -234,7 +224,7 @@
       width: 44px;
       height: 44px;
       border-radius: 50%;
-      background: var(--primary);
+      background: #374151;
       color: white;
       display: flex;
       align-items: center;
@@ -284,8 +274,8 @@
     }
     
     .tag-danger {
-      background: var(--danger-light);
-      color: var(--danger);
+      background: #fff7ed;
+      color: #c2410c;
     }
     
     .header-title {
@@ -303,8 +293,8 @@
     }
     
     .alert {
-      background: var(--success-light);
-      border: 1px solid #d1fae5;
+      background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf9 100%);
+      border: 1px solid #a7f3d0;
       border-radius: 10px;
       padding: 16px;
       margin-bottom: 24px;
@@ -411,14 +401,17 @@
     }
     
     .diff-table tr:hover {
-      background: var(--bg-secondary);
+      background: #FAFAF8;
     }
     
     .diff-changed {
-      background: #fef3c7;
-      color: #92400e;
-      font-weight: 500;
+      background: #fef9ec;
+      color: #78350f;
+      font-weight: 600;
     }
+    tr.diff-row { border-left: 3px solid #f59e0b; }
+    tr.diff-row td:first-child { padding-left: 9px; }
+    .sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0 }
     
     .sidebar-panel {
       background: var(--bg-primary);
@@ -427,6 +420,7 @@
       padding: 24px;
       position: sticky;
       top: 32px;
+      box-shadow: 0 2px 16px rgba(30,40,115,.07);
     }
     
     .sidebar-panel-title {
@@ -446,70 +440,64 @@
     
     .stepper-item {
       display: flex;
-      gap: 12px;
+      gap: 14px;
       position: relative;
-      padding-bottom: 32px;
+      padding-bottom: 20px;
+      align-items: flex-start;
     }
     
     .stepper-item:not(:last-child)::after {
       content: '';
       position: absolute;
-      left: 18px;
-      top: 48px;
+      left: 9px;
+      top: 22px;
       width: 2px;
-      height: 32px;
-      background: var(--text-tertiary);
+      height: calc(100% - 18px);
+      background: #e5e7eb;
     }
+    .stepper-item.completed::after { background: #059669 !important; }
     
     .stepper-item.completed::after {
       background: #059669;
     }
     
     .stepper-circle {
-      width: 40px;
-      height: 40px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
       flex-shrink: 0;
+      margin-top: 1px;
+      background: #e5e7eb;
+      border: none;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: white;
-      border: 2px solid var(--text-tertiary);
-      font-weight: 600;
-      color: var(--text-tertiary);
       position: relative;
       z-index: 2;
     }
     
     .stepper-item.completed .stepper-circle {
       background: #059669;
-      border-color: #059669;
-      color: white;
+    }
+    .stepper-item.completed .stepper-circle::after {
+      content: "";
+      width: 6px;
+      height: 4px;
+      border-left: 2px solid white;
+      border-bottom: 2px solid white;
+      transform: rotate(-45deg) translate(1px, 0);
+      display: block;
+      margin-top: -1px;
     }
     
     .stepper-item.active .stepper-circle {
-      border-color: var(--primary);
-      color: var(--primary);
-      background: white;
-      border-width: 3px;
-      width: 44px;
-      height: 44px;
-      margin-left: -2px;
-      margin-top: -2px;
+      background: var(--primary);
+      width: 20px;
+      height: 20px;
+      box-shadow: 0 0 0 4px rgba(30,64,175,0.12);
     }
     
-    .stepper-item.active::before {
-      content: '';
-      position: absolute;
-      left: 6px;
-      top: 6px;
-      width: 48px;
-      height: 48px;
-      border: 2px solid var(--primary);
-      border-radius: 50%;
-      opacity: 0.2;
-      animation: pulse 2s infinite;
-    }
+    .stepper-item.active::before { display: none; }
     
     @keyframes pulse {
       0% {
@@ -554,7 +542,8 @@
     .stepper-meta {
       font-size: 11px;
       color: var(--text-tertiary);
-      margin-top: 4px;
+      margin-top: 2px;
+      line-height: 1.3;
     }
     
     .approval-section {
@@ -581,52 +570,82 @@
       height: 16px;
       flex-shrink: 0;
     }
+    .button-icon-text {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--primary);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 2px 0;
+      font-family: inherit;
+      font-weight: 500;
+    }
+    .button-icon-text:hover { color: var(--primary-dark); text-decoration: underline; }
+    .button-icon-text svg { width: 14px; height: 14px; flex-shrink: 0; }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Bakbak+One&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
 </head>
 <body>
   <div class="header-nav">
-    <div class="logo-placeholder">//</div>
+    <svg width="28" height="20" viewBox="0 0 28 20" fill="none" aria-label="Flow icon">
+      <rect x="0" y="7" width="7" height="6" rx="2" fill="#1e40af"/>
+      <path d="M7 10 L11 10" stroke="#1e40af" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M11 10 L11 4 M11 10 L11 16" stroke="#9ca3af" stroke-width="1.5" stroke-linecap="round"/>
+      <rect x="11" y="1" width="7" height="6" rx="2" fill="#dc2626"/>
+      <rect x="11" y="13" width="7" height="6" rx="2" fill="#1e40af" opacity="0.5"/>
+      <path d="M18 4 L22 10 M18 16 L22 10" stroke="#1e40af" stroke-width="1.5" stroke-linecap="round"/>
+      <rect x="22" y="7" width="6" height="6" rx="2" fill="#1e40af"/>
+    </svg>
     <div class="app-name">Accounting Rules Engine</div>
+    <div style="display:flex;align-items:center;gap:10px;margin-left:auto">
+      <button style="position:relative;background:none;border:none;cursor:pointer;padding:7px;border-radius:8px;color:var(--text-tertiary);display:flex;align-items:center">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <span style="position:absolute;top:5px;right:5px;width:7px;height:7px;background:#dc2626;border-radius:50%;border:1.5px solid white"></span>
+      </button>
+      <div style="width:32px;height:32px;border-radius:50%;background:#374151;color:white;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;cursor:pointer">OL</div>
+    </div>
   </div>
   
   <div class="container">
     <div class="sidebar">
+      <div class="sidebar-sections">
       <div class="sidebar-section">
         <div class="sidebar-title">Workspace</div>
-        <div class="sidebar-item">Dashboard</div>
-        <div class="sidebar-item active">Requests</div>
+        <div class="sidebar-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Dashboard</div>
+        <div class="sidebar-item active"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>Requests</div>
       </div>
       <div class="sidebar-section">
         <div class="sidebar-title">Rules</div>
-        <div class="sidebar-item">All rules</div>
-        <div class="sidebar-item">Rule sets</div>
-        <div class="sidebar-item">Drafts</div>
+        <div class="sidebar-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>All rules</div>
+        <div class="sidebar-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>Rule sets</div>
+        <div class="sidebar-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Drafts</div>
+      </div>
+      </div><!-- /sidebar-sections -->
+      <div class="sidebar-bottom">
+        <div class="sidebar-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Settings</div>
+        <div class="sidebar-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Log out</div>
       </div>
     </div>
     
     <div class="main">
       <div class="topbar">
         <div class="breadcrumb">
+          <a href="#" style="color:var(--text-tertiary);text-decoration:none;display:inline-flex;align-items:center;gap:4px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg></a>
           <span>My Requests</span>
           <span class="breadcrumb-sep">/</span>
           <span class="breadcrumb-current">RQ-001</span>
         </div>
-        <div class="button-group">
-          <button class="button button-outline">Send back</button>
-          <button class="button button-filled">Send for approval</button>
-        </div>
       </div>
       
       <div class="content">
-        <div class="owner-badge">
-          <div class="owner-avatar">OL</div>
-          <div class="owner-info">
-            <div class="owner-label">Assigned to</div>
-            <div class="owner-name">Olivia Levine</div>
-          </div>
-        </div>
+
         
-        <div class="header">
+        <div class="header" style="display:flex;align-items:flex-start;justify-content:space-between;gap:20px">
+          <div style="flex:1;min-width:0">
           <div class="header-tags">
             <span class="tag">Global Markets · OTC Derivatives</span>
             <span class="tag">RQ-001</span>
@@ -642,6 +661,12 @@
           <div class="header-meta">
             <span>Submitted by Linda Daniels</span>
             <span>10 Apr 2026</span>
+            <span style="display:inline-flex;align-items:center;gap:5px"><span style="width:18px;height:18px;border-radius:50%;background:#374151;color:white;font-size:8px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">OL</span>Assigned to <strong style="color:var(--text-primary)">Olivia Levine (You)</strong> · Michael W. <button style="font-size:11px;font-weight:600;color:var(--primary);background:none;border:none;cursor:pointer;padding:0;text-decoration:underline;opacity:0.8">Reassign</button></span>
+          </div>
+          </div><!-- /header-left -->
+          <div style="display:flex;gap:8px;flex-shrink:0;padding-top:2px">
+            <button class="button button-outline" style="display:inline-flex;align-items:center;gap:6px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>Flag an issue</button>
+            <button class="button button-filled" disabled title="Available after business validates">Send for approval</button>
           </div>
         </div>
         
@@ -682,7 +707,9 @@
             </div>
             
             <div class="card" style="margin-top: 24px;">
-              <div class="card-header">Rule Impact</div>
+              <div class="card-header" style="display:flex;align-items:center;justify-content:space-between">Rule Impact
+                <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--primary);background:var(--primary-light);border:1px solid #bfdbfe;border-radius:6px;padding:3px 9px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>RS-4482 · OTC Derivatives — EMEA booking</span>
+              </div>
               <h3 style="font-size: 14px; margin: 16px 0 12px 0; color: var(--text-primary); font-weight: 600;">OTC Derivatives — EMEA booking</h3>
               <table class="diff-table">
                 <thead>
@@ -703,32 +730,33 @@
                     <td>OTC</td>
                     <td>OTC</td>
                   </tr>
-                  <tr>
+                  <tr class="diff-row">
                     <td><strong>tx_type</strong></td>
-                    <td class="diff-changed">Structured</td>
-                    <td class="diff-changed">Structured · Sub-type B</td>
+                    <td class="diff-changed"><span class="sr-only">Previous value: </span>Structured</td>
+                    <td class="diff-changed"><span class="sr-only">New value: </span>Structured · Sub-type B</td>
                   </tr>
                   <tr>
                     <td><strong>mapping</strong></td>
                     <td>GL-4482</td>
                     <td>GL-4482</td>
                   </tr>
-                  <tr>
+                  <tr class="diff-row">
                     <td><strong>sub_type</strong></td>
-                    <td class="diff-changed">null</td>
-                    <td class="diff-changed">B</td>
+                    <td class="diff-changed"><span class="sr-only">Previous value: </span>null</td>
+                    <td class="diff-changed"><span class="sr-only">New value: </span>B</td>
                   </tr>
                 </tbody>
               </table>
-              <div style="padding: 16px; background: var(--success-light); border-radius: 8px; margin-top: 16px; color: var(--success); font-size: 14px;">
+              <div style="font-size:11px;color:var(--text-tertiary);margin-top:10px;display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:10px;height:10px;background:#fef9ec;border-left:3px solid #f59e0b;flex-shrink:0"></span>Highlighted rows indicate fields that differ from the current rule</div>
+              <div style="padding: 14px 16px; background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 8px; margin-top: 14px; font-size: 13px;">
                 <div style="display: flex; align-items: flex-start; gap: 8px;">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-top: 2px;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#0369a1" stroke-width="2" style="margin-top: 2px; flex-shrink:0;">
                     <circle cx="12" cy="12" r="10"></circle>
-                    <polyline points="9 12 11 14 15 10"></polyline>
+                    <line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line>
                   </svg>
                   <div>
-                    <div style="font-weight: 600; color: #065f46;">Rule change would correctly restructure the mapping.</div>
-                    <div style="font-size: 12px; margin-top: 8px; color: #065f46;">Estimated effect: reclassification across 3 GL accounts, applied to approximately 140 transactions per month based on 30-day history.</div>
+                    <div style="font-weight: 600; color: #0c4a6e;">Estimated impact — requires business confirmation.</div>
+                    <div style="font-size: 12px; margin-top: 6px; color: #0369a1;">Based on matching conditions against available transaction data: ~140 transactions / month across 3 GL accounts. This is a system estimate — business review will confirm whether it reflects the intended outcome.</div>
                   </div>
                 </div>
               </div>
@@ -736,24 +764,22 @@
             
             <div class="card" style="margin-top: 24px;">
               <div class="card-header">Conditions</div>
-              <div class="field-grid">
-                <div class="field">
-                  <label class="field-label">Legal Entity</label>
-                  <div class="field-value" style="font-weight: 600;">EMEA Holdings · 0300</div>
+              <div style="display:flex;flex-direction:column;gap:0">
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border-light)">
+                  <span style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-tertiary)">Legal Entity</span>
+                  <span style="font-size:14px;font-weight:600;color:var(--text-primary)">EMEA Holdings · 0300</span>
                 </div>
-                <div class="field">
-                  <label class="field-label">Product</label>
-                  <div class="field-value" style="font-weight: 600;">OTC Derivatives</div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border-light)">
+                  <span style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-tertiary)">Product</span>
+                  <span style="font-size:14px;font-weight:600;color:var(--text-primary)">OTC Derivatives</span>
                 </div>
-              </div>
-              <div class="field-grid" style="margin-top: 24px;">
-                <div class="field">
-                  <label class="field-label">Transaction Type</label>
-                  <div class="field-value" style="font-weight: 600;">Structured · 0012</div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border-light)">
+                  <span style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-tertiary)">Transaction Type</span>
+                  <span style="font-size:14px;font-weight:600;color:var(--text-primary)">Structured · 0012</span>
                 </div>
-                <div class="field">
-                  <label class="field-label">Natural Account</label>
-                  <div class="field-value" style="font-weight: 600;">4482 · OTC Derivatives Liability</div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0">
+                  <span style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-tertiary)">Natural Account</span>
+                  <span style="font-size:14px;font-weight:600;color:var(--text-primary)">4482 · OTC Derivatives Liability</span>
                 </div>
               </div>
             </div>
@@ -764,32 +790,39 @@
               <div class="sidebar-panel-title">Next Steps</div>
               <div class="stepper">
                 <div class="stepper-item completed">
-                  <div class="stepper-circle">✓</div>
+                  <div class="stepper-circle"></div>
                   <div class="stepper-content">
                     <div class="stepper-label">Initiation</div>
                     <div class="stepper-meta">Completed · 10 Apr by Linda D.</div>
                   </div>
                 </div>
                 <div class="stepper-item completed">
-                  <div class="stepper-circle">✓</div>
+                  <div class="stepper-circle"></div>
                   <div class="stepper-content">
                     <div class="stepper-label">Verification</div>
                     <div class="stepper-meta">Completed · 25 Apr by Michael W.</div>
                   </div>
                 </div>
                 <div class="stepper-item completed">
-                  <div class="stepper-circle">✓</div>
+                  <div class="stepper-circle"></div>
                   <div class="stepper-content">
                     <div class="stepper-label">Execution</div>
                     <div class="stepper-meta">Completed · 28 Apr by You</div>
                   </div>
                 </div>
                 <div class="stepper-item active">
-                  <div class="stepper-circle">→</div>
+                  <div class="stepper-circle"></div>
+                  <div class="stepper-content">
+                    <div class="stepper-label">Business validation</div>
+                    <div class="stepper-sublabel">Business confirms rule matches intended impact</div>
+                    <div class="stepper-meta">Assigned to you · Due May 31</div>
+                  </div>
+                </div>
+                <div class="stepper-item">
+                  <div class="stepper-circle"></div>
                   <div class="stepper-content">
                     <div class="stepper-label">Send for approval</div>
-                    <div class="stepper-sublabel">Requester will confirm change</div>
-                    <div class="stepper-meta">Assigned to you · Due May 31</div>
+                    <div class="stepper-sublabel">A second analyst reviews and approves the change</div>
                   </div>
                 </div>
                 <div class="stepper-item">
@@ -800,11 +833,35 @@
                 </div>
               </div>
               
-              <div class="approval-section">
-                <div class="approval-note">Ready to send. The requester will receive a summary of the rule change, evidence files, and impact preview.</div>
+              <!-- Activity in sidebar -->
+              <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border-light)">
+                <div style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:12px">Activity</div>
+                <div style="display:flex;flex-direction:column;gap:10px">
+                  <div style="display:flex;gap:8px;align-items:flex-start">
+                    <div style="width:22px;height:22px;border-radius:50%;background:#374151;color:white;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">OL</div>
+                    <div><div style="font-size:11px;font-weight:600;color:var(--text-primary)">Olivia Levine <span style="font-weight:400;color:var(--text-tertiary)">· 28 Apr</span></div><div style="font-size:11px;color:var(--text-secondary);margin-top:2px;line-height:1.4">Execution complete. Rule change verified.</div></div>
+                  </div>
+                  <div style="display:flex;gap:8px;align-items:flex-start">
+                    <div style="width:22px;height:22px;border-radius:50%;background:#6b7280;color:white;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">MW</div>
+                    <div><div style="font-size:11px;font-weight:600;color:var(--text-primary)">Michael W. <span style="font-weight:400;color:var(--text-tertiary)">· 25 Apr</span></div><div style="font-size:11px;color:var(--text-secondary);margin-top:2px;line-height:1.4">Verification complete.</div></div>
+                  </div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;margin-top:12px">
+                  <div style="width:22px;height:22px;border-radius:50%;background:#374151;color:white;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">OL</div>
+                  <input type="text" placeholder="Add a comment..." style="flex:1;font-size:12px;font-family:inherit;border:1px solid var(--border);border-radius:6px;padding:6px 10px;outline:none;color:var(--text-primary);background:var(--bg-secondary)">
+                </div>
+              </div>
+
+              <div class="approval-section" id="validation-actions" style="border-top:1px solid var(--border-light);padding-top:16px;margin-top:16px">
+                <div style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:8px">Send for business review</div>
+                <div class="approval-note">Business receives the rule diff, evidence, and impact estimate. They confirm the change matches intent before this goes to the checker.</div>
                 <div class="approval-buttons">
-                  <button class="button button-outline">Preview email</button>
-                  <button class="button button-filled">Send for approval</button>
+                  <button class="button button-outline" style="display:inline-flex;align-items:center;gap:7px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>Preview email</button>
+                  <button class="button button-filled" style="display:inline-flex;align-items:center;gap:7px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Send to business</button>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid var(--border-light)">
+                  <button class="button-icon-text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/><path d="M14 4h6v6"/><path d="M10 14l8.5-8.5"/></svg>View in Jira</button>
+                  <button class="button-icon-text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download all evidence</button>
                 </div>
               </div>
             </div>
